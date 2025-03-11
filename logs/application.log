@@ -1,0 +1,176 @@
+2025-03-11T00:01:33.859+05:30  INFO 2904 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-11T00:01:34.040+05:30  INFO 2904 --- [Online_Appointment_PlatForm] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-11T00:01:34.049+05:30  INFO 2904 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-11T00:01:34.052+05:30  INFO 2904 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-11T00:01:34.071+05:30  INFO 2904 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-11T00:01:46.536+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : Starting OnlineAppointmentPlatFormApplication using Java 17.0.10 with PID 9460 (D:\IJSE\IT119\Online_Appointment_PlatForm\target\classes started by HP in D:\IJSE\IT119\Online_Appointment_PlatForm)
+2025-03-11T00:01:46.541+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : No active profile set, falling back to 1 default profile: "default"
+2025-03-11T00:01:48.304+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-11T00:01:48.358+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 0 JPA repository interfaces.
+2025-03-11T00:01:49.720+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-11T00:01:49.784+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-11T00:01:49.785+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-11T00:01:49.932+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-11T00:01:49.932+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3321 ms
+2025-03-11T00:01:50.247+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-11T00:01:50.388+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-11T00:01:50.465+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-11T00:01:51.037+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-11T00:01:51.088+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-11T00:01:51.655+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@129b69b2
+2025-03-11T00:01:51.660+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-11T00:01:51.767+05:30  WARN 9460 --- [Online_Appointment_PlatForm] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-11T00:01:51.845+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.22
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-11T00:01:54.076+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-11T00:01:54.332+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-11T00:01:54.703+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-11T00:01:55.463+05:30  WARN 9460 --- [Online_Appointment_PlatForm] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: f5f5501d-6776-493f-981c-6da5d3916fab
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-03-11T00:01:55.491+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-03-11T00:01:55.986+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-11T00:01:56.009+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : Started OnlineAppointmentPlatFormApplication in 10.518 seconds (process running for 11.696)
+2025-03-11T00:29:09.693+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-11T00:29:09.856+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-11T00:29:09.864+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-11T00:29:09.867+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-11T00:29:09.878+05:30  INFO 9460 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-11T00:30:42.307+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : Starting OnlineAppointmentPlatFormApplication using Java 17.0.10 with PID 14924 (D:\IJSE\IT119\Online_Appointment_PlatForm\target\classes started by HP in D:\IJSE\IT119\Online_Appointment_PlatForm)
+2025-03-11T00:30:42.313+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : No active profile set, falling back to 1 default profile: "default"
+2025-03-11T00:30:44.039+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-11T00:30:44.104+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 0 JPA repository interfaces.
+2025-03-11T00:30:45.561+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-11T00:30:45.603+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-11T00:30:45.605+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-11T00:30:45.731+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-11T00:30:45.733+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3352 ms
+2025-03-11T00:30:46.097+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-11T00:30:46.195+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-11T00:30:46.270+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-11T00:30:46.768+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-11T00:30:46.807+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-11T00:30:47.346+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@39f93225
+2025-03-11T00:30:47.348+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-11T00:30:47.436+05:30  WARN 14924 --- [Online_Appointment_PlatForm] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-11T00:30:47.469+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.22
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-11T00:30:49.480+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-11T00:30:53.311+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-11T00:30:53.959+05:30  WARN 14924 --- [Online_Appointment_PlatForm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-11T00:30:54.067+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-11T00:30:55.100+05:30  WARN 14924 --- [Online_Appointment_PlatForm] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 52b60322-917d-41d1-90b1-e85f528bc861
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-03-11T00:30:55.127+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-03-11T00:30:55.411+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-11T00:30:55.467+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : Started OnlineAppointmentPlatFormApplication in 14.023 seconds (process running for 15.399)
+2025-03-11T00:33:08.157+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-11T00:33:08.475+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-11T00:33:08.483+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-11T00:33:08.486+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-11T00:33:08.496+05:30  INFO 14924 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-11T09:30:15.188+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : Starting OnlineAppointmentPlatFormApplication using Java 17.0.10 with PID 284 (D:\IJSE\IT119\Online_Appointment_PlatForm\target\classes started by HP in D:\IJSE\IT119\Online_Appointment_PlatForm)
+2025-03-11T09:30:15.191+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : No active profile set, falling back to 1 default profile: "default"
+2025-03-11T09:30:15.988+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-11T09:30:16.007+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 0 JPA repository interfaces.
+2025-03-11T09:30:16.460+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-11T09:30:16.468+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-11T09:30:16.469+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-11T09:30:16.532+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-11T09:30:16.533+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1292 ms
+2025-03-11T09:30:16.658+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-11T09:30:16.714+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-11T09:30:16.745+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-11T09:30:16.995+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-11T09:30:17.023+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-11T09:30:17.322+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1b25d695
+2025-03-11T09:30:17.324+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-11T09:30:17.372+05:30  WARN 284 --- [Online_Appointment_PlatForm] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-11T09:30:17.388+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.22
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-11T09:30:18.275+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-11T09:30:19.697+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-11T09:30:19.840+05:30  WARN 284 --- [Online_Appointment_PlatForm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-11T09:30:19.903+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-11T09:30:20.300+05:30  WARN 284 --- [Online_Appointment_PlatForm] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 70d1419c-6572-4eb2-8533-193800c5ec85
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-03-11T09:30:20.312+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-03-11T09:30:20.459+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-11T09:30:20.469+05:30  INFO 284 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : Started OnlineAppointmentPlatFormApplication in 5.77 seconds (process running for 6.509)
+2025-03-11T09:36:24.142+05:30  INFO 284 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-11T09:36:24.225+05:30  INFO 284 --- [Online_Appointment_PlatForm] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-11T09:36:24.230+05:30  INFO 284 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-11T09:36:24.232+05:30  INFO 284 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-11T09:36:24.241+05:30  INFO 284 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-11T09:36:27.729+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : Starting OnlineAppointmentPlatFormApplication using Java 17.0.10 with PID 4612 (D:\IJSE\IT119\Online_Appointment_PlatForm\target\classes started by HP in D:\IJSE\IT119\Online_Appointment_PlatForm)
+2025-03-11T09:36:27.732+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : No active profile set, falling back to 1 default profile: "default"
+2025-03-11T09:36:28.371+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-11T09:36:28.391+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 0 JPA repository interfaces.
+2025-03-11T09:36:28.788+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-11T09:36:28.796+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-11T09:36:28.797+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-11T09:36:28.854+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-11T09:36:28.854+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1074 ms
+2025-03-11T09:36:28.967+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-11T09:36:29.006+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-11T09:36:29.030+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-11T09:36:29.247+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-11T09:36:29.270+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-11T09:36:29.517+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1b25d695
+2025-03-11T09:36:29.519+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-11T09:36:29.563+05:30  WARN 4612 --- [Online_Appointment_PlatForm] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-11T09:36:29.579+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.22
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-11T09:36:30.412+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-11T09:36:31.574+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-11T09:36:31.701+05:30  WARN 4612 --- [Online_Appointment_PlatForm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-11T09:36:31.746+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-11T09:36:32.094+05:30  WARN 4612 --- [Online_Appointment_PlatForm] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 2b4edae7-1cb5-4d62-a214-1a2a0a1688d7
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-03-11T09:36:32.105+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-03-11T09:36:32.233+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-11T09:36:32.241+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [main] i.o.OnlineAppointmentPlatFormApplication : Started OnlineAppointmentPlatFormApplication in 4.915 seconds (process running for 5.538)
+2025-03-11T10:48:38.608+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-11T10:48:38.901+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-11T10:48:38.913+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-11T10:48:38.921+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-11T10:48:38.943+05:30  INFO 4612 --- [Online_Appointment_PlatForm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
