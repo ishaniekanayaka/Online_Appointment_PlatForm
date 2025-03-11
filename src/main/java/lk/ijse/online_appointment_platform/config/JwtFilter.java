@@ -45,9 +45,9 @@ public class JwtFilter extends OncePerRequestFilter {
 
             token = authorization.substring(7);
             email = jwtUtil.getUsernameFromToken(token);
-            Claims claims=jwtUtil.getUserPasswordCodeFromToken(token);
+            Claims claims=jwtUtil.getUserRoleCodeFromToken(token);
             httpServletRequest.setAttribute("email", email);
-            httpServletRequest.setAttribute("password", claims.get("password"));
+            httpServletRequest.setAttribute("role", claims.get("role"));
         }
 
         if (null != email && SecurityContextHolder.getContext().getAuthentication() == null) {

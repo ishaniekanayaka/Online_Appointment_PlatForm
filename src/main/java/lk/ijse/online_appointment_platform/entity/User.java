@@ -23,6 +23,9 @@ public class User implements Serializable {
     private String email;
     private String dob;
     private String password;
+    private String role;
+   /* @Column(name = "is_active", nullable = false)
+    private boolean isActive = true;*/
 
 
     @OneToMany(mappedBy = "user")

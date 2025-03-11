@@ -3,7 +3,6 @@ package lk.ijse.online_appointment_platform.controller;
 
 import lk.ijse.online_appointment_platform.dto.AuthDTO;
 import lk.ijse.online_appointment_platform.dto.ResponseDTO;
-
 import lk.ijse.online_appointment_platform.dto.UserDTO;
 import lk.ijse.online_appointment_platform.service.impl.UserServiceImpl;
 import lk.ijse.online_appointment_platform.util.JwtUtil;
