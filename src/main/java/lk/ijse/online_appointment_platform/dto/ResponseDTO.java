@@ -1,22 +1,17 @@
 package lk.ijse.online_appointment_platform.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
-public class UserDTO {
-    private Long id;
-    private String name;
-    private String email;
-    private String dob;
-    private String password;
-
-
+@Component
+public class ResponseDTO {
+    private int code;
+    private String message;
+    private Object data;
 }
