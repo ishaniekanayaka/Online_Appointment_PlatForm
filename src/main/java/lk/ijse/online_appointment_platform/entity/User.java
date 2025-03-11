@@ -26,7 +26,9 @@ public class User implements Serializable {
     private String role;
    /* @Column(name = "is_active", nullable = false)
     private boolean isActive = true;*/
-
+/*
+    @Column(name = "is_active")
+    private boolean active;*/
 
     @OneToMany(mappedBy = "user")
     private List<Appointment> appointments;

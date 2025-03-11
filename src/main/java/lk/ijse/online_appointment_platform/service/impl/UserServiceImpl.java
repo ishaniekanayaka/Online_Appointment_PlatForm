@@ -5,6 +5,7 @@ import lk.ijse.online_appointment_platform.dto.UserDTO;
 import lk.ijse.online_appointment_platform.entity.User;
 import lk.ijse.online_appointment_platform.repo.UserRepository;
 import lk.ijse.online_appointment_platform.service.UserService;
+import lk.ijse.online_appointment_platform.util.ResponseUtil;
 import lk.ijse.online_appointment_platform.util.VarList;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -30,6 +33,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -70,5 +75,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             return VarList.Created;
         }
     }
+
+    @Override
+    public void deleteUser(String id) {
+        userRepository.deleteById(id);
+    }
+
 
 }

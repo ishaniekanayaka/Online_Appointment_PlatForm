@@ -7,6 +7,7 @@ import lk.ijse.online_appointment_platform.dto.ResponseDTO;
 import lk.ijse.online_appointment_platform.dto.UserDTO;
 import lk.ijse.online_appointment_platform.service.UserService;
 import lk.ijse.online_appointment_platform.util.JwtUtil;
+import lk.ijse.online_appointment_platform.util.ResponseUtil;
 import lk.ijse.online_appointment_platform.util.VarList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,6 +51,12 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
         }
+    }
+
+    @DeleteMapping(path = "delete/{id}")
+    public ResponseUtil deleteCustomer(@PathVariable("id") String id) {
+        userService.deleteUser(id);
+        return new ResponseUtil(200,"User Deleted",null);
     }
 
 }
