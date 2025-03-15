@@ -53,10 +53,4 @@ public class UserController {
         }
     }
 
-    @DeleteMapping(path = "delete/{id}")
-    public ResponseUtil deleteCustomer(@PathVariable("id") String id) {
-        userService.deleteUser(id);
-        return new ResponseUtil(200,"User Deleted",null);
-    }
-
 }

@@ -16,16 +16,17 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class AdminController {
 
-    @Autowired
-    private UserService userService;
-
     @GetMapping("/test1")
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String check(){
-        return "you are User :-)";
+        return "you are Admin :-)";
     }
 
-
+    @GetMapping("/test2")
+    @PreAuthorize("hasAuthority('USER')")
+    public String checks(){
+        return "you are User :-)";
+    }
 }
 
 
