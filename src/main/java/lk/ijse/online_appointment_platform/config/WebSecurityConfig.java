@@ -65,11 +65,7 @@ public class WebSecurityConfig {
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html").permitAll()
-                        // Admin Access (Only ADMIN role)
-                        .requestMatchers("/api/v1/admin/**").hasAuthority("ADMIN")
-                        // User Access (Only USER role)
-                        .requestMatchers("/api/v1/customer/**").hasAuthority("USER")
-                        // Any Other Requests Require Authentication
+
                         .anyRequest().authenticated()
 
                 )

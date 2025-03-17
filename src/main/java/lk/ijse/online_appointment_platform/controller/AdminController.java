@@ -16,6 +16,17 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class AdminController {
 
+    @GetMapping("/checkRole")
+    public String checkRole() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String role = authentication.getAuthorities().stream()
+                .map(authority -> authority.getAuthority())
+                .findFirst()
+                .orElse("UNKNOWN");
+
+        return "{\"role\": \"" + role + "\"}";
+    }
+
     @GetMapping("/test1")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String check(){

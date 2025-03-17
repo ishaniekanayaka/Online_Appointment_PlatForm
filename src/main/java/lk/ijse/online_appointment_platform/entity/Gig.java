@@ -26,8 +26,8 @@ public class Gig {
     private Double amountCharge;
 
     @ManyToOne
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "subcategory_id")

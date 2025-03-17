@@ -11,7 +11,6 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "systemuser")
 @Data
 @Entity
 public class User implements Serializable {
@@ -24,17 +23,18 @@ public class User implements Serializable {
     private String dob;
     private String password;
     private String role;
-   /* @Column(name = "is_active", nullable = false)
-    private boolean isActive = true;*/
-/*
-    @Column(name = "is_active")
-    private boolean active;*/
 
     @OneToMany(mappedBy = "user")
     private List<Appointment> appointments;
 
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
+
+    @OneToMany(mappedBy = "user")
+    private List<Gig> gigs;
+
+    @OneToMany(mappedBy = "user")
+    private List<Category> categories;
 
   /*  @OneToOne
     @JoinColumn(name = "payment_id")

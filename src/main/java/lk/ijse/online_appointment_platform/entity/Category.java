@@ -22,8 +22,8 @@ public class Category {
     private String image;
 
     @ManyToOne
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToMany(mappedBy = "category")
     private List<SubCategory> subCategories;
