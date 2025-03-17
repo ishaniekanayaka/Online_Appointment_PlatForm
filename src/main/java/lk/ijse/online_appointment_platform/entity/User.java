@@ -33,8 +33,8 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Gig> gigs;
 
-    @OneToMany(mappedBy = "user")
-    private List<Category> categories;
+   /* @OneToMany(mappedBy = "user")
+    private List<Category> categories;*/
 
   /*  @OneToOne
     @JoinColumn(name = "payment_id")

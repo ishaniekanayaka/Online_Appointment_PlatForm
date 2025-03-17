@@ -13,8 +13,7 @@ import java.util.List;
 @Entity
 public class SubCategory {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String name;
     private String description;
     private String image;

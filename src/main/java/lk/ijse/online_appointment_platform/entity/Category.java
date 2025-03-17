@@ -15,15 +15,15 @@ import java.util.Date;
 @Entity
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+    private String id;
     private String name;
     private String description;
     private String image;
 
-    @ManyToOne
+   /* @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user;*/
 
     @OneToMany(mappedBy = "category")
     private List<SubCategory> subCategories;
