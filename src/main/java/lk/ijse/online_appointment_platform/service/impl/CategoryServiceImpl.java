@@ -5,8 +5,11 @@ import lk.ijse.online_appointment_platform.entity.Category;
 import lk.ijse.online_appointment_platform.repo.CategoryRepository;
 import lk.ijse.online_appointment_platform.service.CategoryService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -17,10 +20,37 @@ public class CategoryServiceImpl implements CategoryService {
     private ModelMapper modelMapper;
 
     @Override
-    public void addcategory(CategoryDTO categoryDTO){
+    public void addCategory(CategoryDTO categoryDTO){
         if (categoryRepository.existsById(categoryDTO.getId())){
             throw new RuntimeException("Category Allready exists");
         }
         categoryRepository.save(modelMapper.map(categoryDTO, Category.class));
+    }
+
+    @Override
+    public void updateCategory(CategoryDTO categoryDTO) {
+        if (!categoryRepository.existsById(categoryDTO.getId())){
+            throw  new RuntimeException("Category does not exist");
+        }
+        categoryRepository.save(modelMapper.map(categoryDTO, Category.class));
+    }
+
+    @Override
+    public void deleteCategory(String id) {
+        categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CategoryDTO> getAllCategories() {
+       return modelMapper.map(categoryRepository.findAll(),
+               new TypeToken<List<CategoryDTO>>(){}.getType());
+    }
+
+    @Override
+    public CategoryDTO getCategoryById(String id) {
+       Category category = categoryRepository.findById(id).orElseThrow(()->
+               new RuntimeException("Category does not exists")
+               );
+       return modelMapper.map(category, CategoryDTO.class);
     }
 }

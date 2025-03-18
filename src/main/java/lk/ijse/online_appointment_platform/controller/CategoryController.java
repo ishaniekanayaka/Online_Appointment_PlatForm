@@ -16,7 +16,34 @@ public class CategoryController {
 
     @PostMapping(value = "save", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveCategory(@RequestBody CategoryDTO categoryDTO){
-        categoryService.addcategory(categoryDTO);
-        return new ResponseUtil(201, "Category Saved", null);
+        categoryService.addCategory(categoryDTO);
+        return new ResponseUtil(200, "Category Saved", null);
     }
+
+    @PutMapping(value = "update", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateCategory(@RequestBody CategoryDTO categoryDTO){
+        categoryService.updateCategory(categoryDTO);
+        return new ResponseUtil(200, "Category Update", null);
+    }
+
+    @DeleteMapping(path = "delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteCategory(@PathVariable("id") String id){
+        categoryService.deleteCategory(id);
+        return new ResponseUtil(200, "Category Delete", null);
+    }
+
+    @GetMapping(value = "getAll")
+    public ResponseUtil getAllCategory(){
+        return new ResponseUtil(200,
+                "Customer List",
+                categoryService.getAllCategories()
+                );
+    }
+
+    @GetMapping("getCategoryById/{id}")
+    public ResponseUtil getCategoryById(@PathVariable String id){
+        CategoryDTO categoryDTO = categoryService.getCategoryById(id);
+        return new ResponseUtil(200,"Category Found", categoryDTO);
+    }
+
 }
