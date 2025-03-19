@@ -53,4 +53,16 @@ public class CategoryServiceImpl implements CategoryService {
                );
        return modelMapper.map(category, CategoryDTO.class);
     }
+
+    @Override
+    public List<String> getCategoryNames() {
+        return categoryRepository.getCategoryNames();
+    }
+
+    @Override
+    public CategoryDTO getCategoryByName(String name) {
+        Category category = categoryRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("Customer does not exist"));
+        return modelMapper.map(category, CategoryDTO.class);
+    }
 }

@@ -46,4 +46,18 @@ public class CategoryController {
         return new ResponseUtil(200,"Category Found", categoryDTO);
     }
 
+    @GetMapping("getCategoryName")
+    public ResponseUtil getCategoryNames(){
+        return new ResponseUtil(
+        200,
+        "Category name list",
+        categoryService.getCategoryNames());
+    }
+
+    @GetMapping("getCategoryByName/{name}")
+    public ResponseUtil getCategoryByName(@PathVariable String name){
+        CategoryDTO categoryDTO = categoryService.getCategoryByName(name);
+        return new ResponseUtil(200, "category Found", categoryDTO);
+    }
+
 }
