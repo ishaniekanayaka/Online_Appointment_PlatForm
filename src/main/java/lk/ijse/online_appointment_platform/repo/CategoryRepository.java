@@ -10,11 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CategoryRepository extends JpaRepository<Category, String> {
+
     @Query("SELECT c.name from Category c")
     List<String> getCategoryNames();
 
-    @Query("SELECT c.name from Category  c WHERE c.name=:name")
-    CategoryDTO findNameByName(@Param("name") String name);
-
-    Optional<Category> findByName(String name);
+    @Query("SELECT c FROM Category c WHERE c.name=:name")
+    Optional<Category> findByName(@Param("name") String name);
 }
