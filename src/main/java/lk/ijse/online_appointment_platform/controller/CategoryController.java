@@ -104,6 +104,25 @@ public class CategoryController {
         return new ResponseUtil(200, "Category Updated Successfully", updatedCategory);
     }
 
+    @DeleteMapping("delete/{id}")
+    public ResponseUtil deleteCategory(@PathVariable Long id) throws IOException {
+        // Retrieve the category details
+        CategoryDTO existingCategory = categoryService.getCategoryById(id);
+        if (existingCategory == null) {
+            throw new RuntimeException("Category not found!");
+        }
+
+        // Delete the image file if it exists
+        String imagePath = existingCategory.getImage();
+        if (imagePath != null) {
+            Files.deleteIfExists(Paths.get(imagePath));
+        }
+
+        // Delete the category
+        categoryService.deleteCategory(id);
+
+        return new ResponseUtil(200, "Category Deleted Successfully", null);
+    }
 
 
 
