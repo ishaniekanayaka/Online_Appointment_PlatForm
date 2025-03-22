@@ -134,5 +134,11 @@ public class CategoryController {
         return new ResponseUtil(200, "Category Names Retrieved Successfully", categoryService.getCategoryNames());
     }
 
+    @GetMapping("name/{name}")
+    public ResponseUtil getCategoryByName(@PathVariable String name) {
+        return new ResponseUtil(200, "Category Retrieved Successfully", categoryService.getCategoryByName(name));
+    }
+
+
 
 }
