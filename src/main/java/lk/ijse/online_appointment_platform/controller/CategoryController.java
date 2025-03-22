@@ -139,6 +139,10 @@ public class CategoryController {
         return new ResponseUtil(200, "Category Retrieved Successfully", categoryService.getCategoryByName(name));
     }
 
+    @GetMapping("{id}")
+    public ResponseUtil getCategoryById(@PathVariable Long id) {
+        return new ResponseUtil(200, "Category Retrieved Successfully", categoryService.getCategoryById(id));
+    }
 
 
 }
