@@ -14,31 +14,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class SubCategoryServiceImpl implements SubCategoryService {
 
-    /*@Autowired
-    private CategoryRepository categoryRepository;
-
-    @Autowired
-    private SubCategoryRepository subCategoryRepository;
-
-    @Autowired
-    private ModelMapper modelMapper;
-
-
-    @Override
-    public void addSubCategory(SubCategoryDTO subCategoryDTO) {
-
-        SubCategory subCategory= new SubCategory();
-        subCategory.setId(subCategoryDTO.getId());
-        subCategory.setName(subCategoryDTO.getName());
-        subCategory.setDescription(subCategoryDTO.getDescription());
-        subCategory.setImage(subCategoryDTO.getImage());
-
-        Category category = categoryRepository.findByName(subCategoryDTO.getCategoryId())
-                .orElseThrow(() -> new RuntimeException("Category not found with ID: " + subCategoryDTO.getCategoryId()));
-        subCategory.setCategory(category);
-
-    }
-}*/
     @Autowired
     private CategoryRepository categoryRepository;
 
@@ -58,8 +33,9 @@ public class SubCategoryServiceImpl implements SubCategoryService {
         subCategory.setImage(subCategoryDTO.getImage());
 
         // Fetch the Category entity using the category NAME
-        Category category = categoryRepository.findByName(subCategoryDTO.getCategoryName())
-                .orElseThrow(() -> new RuntimeException("Category not found with name: " + subCategoryDTO.getCategoryName()));
+        Category category = categoryRepository.findById(subCategoryDTO.getCategoryId())
+                .orElseThrow(() -> new RuntimeException("Category not found with ID: " + subCategoryDTO.getCategoryId()));
+
 
         // Set the Category entity in the SubCategory entity
         subCategory.setCategory(category);

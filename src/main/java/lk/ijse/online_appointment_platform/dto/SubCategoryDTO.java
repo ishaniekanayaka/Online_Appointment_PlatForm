@@ -12,6 +12,6 @@ public class SubCategoryDTO {
     private String name;
     private String description;
     private String image;
-    private String categoryId;
+    private Long categoryId;
     private String categoryName;
 }

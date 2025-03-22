@@ -15,8 +15,8 @@ import java.util.Date;
 @Entity
 public class Category {
     @Id
-
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String description;
     private String image;

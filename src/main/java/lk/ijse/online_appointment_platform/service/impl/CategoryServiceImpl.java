@@ -19,13 +19,18 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private ModelMapper modelMapper;
 
-    @Override
+   /* @Override
     public void addCategory(CategoryDTO categoryDTO){
         if (categoryRepository.existsById(categoryDTO.getId())){
             throw new RuntimeException("Category Allready exists");
         }
         categoryRepository.save(modelMapper.map(categoryDTO, Category.class));
-    }
+    }*/
+   @Override
+   public void addCategory(CategoryDTO categoryDTO){
+
+       categoryRepository.save(modelMapper.map(categoryDTO, Category.class));
+   }
 
     @Override
     public void updateCategory(CategoryDTO categoryDTO) {
@@ -36,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteCategory(String id) {
+    public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
     }
 
@@ -47,7 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDTO getCategoryById(String id) {
+    public CategoryDTO getCategoryById(Long id) {
        Category category = categoryRepository.findById(id).orElseThrow(()->
                new RuntimeException("Category does not exists")
                );

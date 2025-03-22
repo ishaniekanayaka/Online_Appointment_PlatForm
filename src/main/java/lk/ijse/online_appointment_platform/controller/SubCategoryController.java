@@ -23,5 +23,14 @@ public class SubCategoryController {
         return new ResponseUtil(201,"Category Saved", null);
     }
 
+  /*  @GetMapping(value = "getAll")
+    public ResponseUtil getAllSubCategory(){
+        return new ResponseUtil(
+                200,
+                "Customer List",
+                subcategoryService.getAllSubCategories()
+        );
+    }*/
+
 }
 
