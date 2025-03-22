@@ -34,9 +34,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void updateCategory(CategoryDTO categoryDTO) {
-        if (!categoryRepository.existsById(categoryDTO.getId())){
-            throw  new RuntimeException("Category does not exist");
-        }
+
         categoryRepository.save(modelMapper.map(categoryDTO, Category.class));
     }
 
