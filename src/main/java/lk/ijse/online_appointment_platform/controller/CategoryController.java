@@ -124,7 +124,10 @@ public class CategoryController {
         return new ResponseUtil(200, "Category Deleted Successfully", null);
     }
 
-
+    @GetMapping("getAll")
+    public ResponseUtil getAllCategories() {
+        return new ResponseUtil(200, "All Categories Retrieved Successfully", categoryService.getAllCategories());
+    }
 
 
 }
