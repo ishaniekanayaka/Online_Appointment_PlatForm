@@ -98,5 +98,28 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return false;
     }
 
+    @Override
+    public boolean updateUser(UserDTO userDTO) {
+        Optional<User> existingUser = userRepository.findById(String.valueOf(userDTO.getId()));
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
+            user.setName(userDTO.getName());
+            user.setEmail(userDTO.getEmail());
+            user.setDob(userDTO.getDob());
 
+            if (!userDTO.getPassword().isEmpty()) { // Update password only if provided
+                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+            }
+
+            user.setRole(userDTO.getRole());
+            user.setActive(userDTO.isActive());
+
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
 }
+
+

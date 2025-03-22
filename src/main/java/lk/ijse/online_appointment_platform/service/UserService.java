@@ -8,6 +8,7 @@ import java.util.List;
 public interface UserService {
     int saveUser(UserDTO userDTO);
     UserDTO searchUser(String username);
-    public List<UserDTO> getAllUsers();
-    public boolean changeUserStatus(int id, boolean status);
+     List<UserDTO> getAllUsers();
+    boolean changeUserStatus(int id, boolean status);
+    boolean updateUser(UserDTO userDTO);
 }

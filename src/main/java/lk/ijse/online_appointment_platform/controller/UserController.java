@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/user")
 @CrossOrigin("*")
@@ -53,4 +55,52 @@ public class UserController {
         }
     }
 
+    @GetMapping(value = "/getAll")
+    public ResponseEntity<ResponseDTO> getAllUsers() {
+        try {
+            List<UserDTO> userList = userService.getAllUsers();
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseDTO(VarList.Created, "Success", userList));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+        }
+    }
+
+    @PutMapping(value = "/activate/{id}")
+    public ResponseEntity<ResponseDTO> activateUser(@PathVariable int id) {
+        if (userService.changeUserStatus(id, true)) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseDTO(VarList.Created, "User Activated", null));
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ResponseDTO(VarList.Not_Found, "User Not Found", null));
+    }
+
+    @PutMapping(value = "/deactivate/{id}")
+    public ResponseEntity<ResponseDTO> deactivateUser(@PathVariable int id) {
+        if (userService.changeUserStatus(id, false)) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseDTO(VarList.Created, "User Deactivated", null));
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ResponseDTO(VarList.Not_Found, "User Not Found", null));
+    }
+
+    @PutMapping(value = "/update")
+    public ResponseEntity<ResponseDTO> updateUser(@RequestBody UserDTO userDTO) {
+        try {
+            boolean updated = userService.updateUser(userDTO);
+            if (updated) {
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(new ResponseDTO(VarList.Created, "User Updated Successfully", null));
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new ResponseDTO(VarList.Not_Found, "User Not Found", null));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+        }
+    }
 }
