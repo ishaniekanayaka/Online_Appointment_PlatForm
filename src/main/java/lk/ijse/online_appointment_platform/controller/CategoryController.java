@@ -129,5 +129,10 @@ public class CategoryController {
         return new ResponseUtil(200, "All Categories Retrieved Successfully", categoryService.getAllCategories());
     }
 
+    @GetMapping("names")
+    public ResponseUtil getCategoryNames() {
+        return new ResponseUtil(200, "Category Names Retrieved Successfully", categoryService.getCategoryNames());
+    }
+
 
 }
