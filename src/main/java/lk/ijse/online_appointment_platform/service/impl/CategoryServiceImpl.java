@@ -19,13 +19,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private ModelMapper modelMapper;
 
-   /* @Override
-    public void addCategory(CategoryDTO categoryDTO){
-        if (categoryRepository.existsById(categoryDTO.getId())){
-            throw new RuntimeException("Category Allready exists");
-        }
-        categoryRepository.save(modelMapper.map(categoryDTO, Category.class));
-    }*/
    @Override
    public void addCategory(CategoryDTO categoryDTO){
 
@@ -68,6 +61,4 @@ public class CategoryServiceImpl implements CategoryService {
                 .orElseThrow(() -> new RuntimeException("Customer does not exist"));
         return modelMapper.map(category, CategoryDTO.class);
     }
-
-
 }

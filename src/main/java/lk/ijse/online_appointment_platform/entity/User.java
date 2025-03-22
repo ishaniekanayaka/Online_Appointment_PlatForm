@@ -23,6 +23,7 @@ public class User implements Serializable {
     private String dob;
     private String password;
     private String role;
+    private boolean active = true;
 
     @OneToMany(mappedBy = "user")
     private List<Appointment> appointments;
