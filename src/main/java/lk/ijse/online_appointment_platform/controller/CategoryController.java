@@ -123,25 +123,6 @@ public class CategoryController {
         return new ResponseUtil(200, "Category Deleted Successfully", null);
     }
 
-   /* @DeleteMapping("delete/{id}")
-    public ResponseUtil deleteCategory(@PathVariable Long id) throws IOException {
-        // Retrieve the category details
-        CategoryDTO existingCategory = categoryService.getCategoryById(id);
-        if (existingCategory == null) {
-            throw new RuntimeException("Category not found!");
-        }
-
-        // Delete the image file if it exists
-        String imagePath = existingCategory.getImage();
-        if (imagePath != null) {
-            Files.deleteIfExists(Paths.get(imagePath));
-        }
-
-        // Delete the category
-        categoryService.deleteCategory(id);
-
-        return new ResponseUtil(200, "Category Deleted Successfully", null);
-    }*/
 
     @GetMapping("getAll")
     public ResponseEntity<ResponseDTO> getAllCategories() {
@@ -171,13 +152,22 @@ public class CategoryController {
 
     @GetMapping("name/{name}")
     public ResponseUtil getCategoryByName(@PathVariable String name) {
-        return new ResponseUtil(200, "Category Retrieved Successfully", categoryService.getCategoryByName(name));
+        CategoryDTO category = categoryService.getCategoryByName(name);
+        if (category != null && category.getImage() != null) {
+            category.setImage(category.getImage().replace("\\", "/"));
+        }
+        return new ResponseUtil(200, "Category Retrieved Successfully", category);
     }
 
     @GetMapping("{id}")
     public ResponseUtil getCategoryById(@PathVariable Long id) {
-        return new ResponseUtil(200, "Category Retrieved Successfully", categoryService.getCategoryById(id));
+        CategoryDTO category = categoryService.getCategoryById(id);
+        if (category != null && category.getImage() != null) {
+            category.setImage(category.getImage().replace("\\", "/")); // Fix path format
+        }
+        return new ResponseUtil(200, "Category Retrieved Successfully", category);
     }
+
 
 
 }
