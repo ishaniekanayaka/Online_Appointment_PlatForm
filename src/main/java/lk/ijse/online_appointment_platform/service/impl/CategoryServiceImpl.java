@@ -22,7 +22,9 @@ public class CategoryServiceImpl implements CategoryService {
    @Override
    public void addCategory(CategoryDTO categoryDTO){
 
-       categoryRepository.save(modelMapper.map(categoryDTO, Category.class));
+     categoryRepository.save(modelMapper.map(categoryDTO, Category.class));
+
+
    }
 
     @Override

@@ -1,10 +1,15 @@
 package lk.ijse.online_appointment_platform.controller;
 
 import lk.ijse.online_appointment_platform.dto.CategoryDTO;
+import lk.ijse.online_appointment_platform.dto.ResponseDTO;
+import lk.ijse.online_appointment_platform.dto.UserDTO;
 import lk.ijse.online_appointment_platform.entity.Category;
 import lk.ijse.online_appointment_platform.service.CategoryService;
 import lk.ijse.online_appointment_platform.util.ResponseUtil;
+import lk.ijse.online_appointment_platform.util.VarList;
+import lk.ijse.online_appointment_platform.util.picEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +20,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin("*")
+
 @RequestMapping("api/v1/category")
 public class CategoryController {
 
@@ -44,6 +51,7 @@ public class CategoryController {
 
         // Generate unique file name
         String fileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
+        System.out.println(image.getOriginalFilename());
         // Define file path
         Path filePath = Paths.get(UPLOAD_DIR + fileName);
         Files.write(filePath, image.getBytes());
@@ -58,53 +66,64 @@ public class CategoryController {
         return new ResponseUtil(200, "Category Saved", categoryDTO);
     }
 
-    @PutMapping(value = "update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "update/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateCategory(
-            @RequestParam("id") Long id,
+            @PathVariable Long id,
             @RequestParam("name") String name,
             @RequestParam("description") String description,
             @RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
 
         CategoryDTO existingCategory = categoryService.getCategoryById(id);
         if (existingCategory == null) {
-            throw new RuntimeException("Category not found!");
+            return new ResponseUtil(404, "Category not found!", null);
         }
 
-        // Keep existing image path unless a new image is uploaded
-        String imagePath = existingCategory.getImage();
-
+        // If a new image is provided, replace the old one
+        String updatedImagePath = existingCategory.getImage();
         if (image != null && !image.isEmpty()) {
-            // Create upload directory if it doesn't exist
-            File uploadDir = new File(UPLOAD_DIR);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdirs();
+            // Delete the old image
+            if (updatedImagePath != null && !updatedImagePath.isEmpty()) {
+                Path oldImagePath = Paths.get(UPLOAD_DIR + updatedImagePath);
+                Files.deleteIfExists(oldImagePath);
             }
 
-            // Delete old image if it exists
-            if (imagePath != null) {
-                Files.deleteIfExists(Paths.get(imagePath));
-            }
-
-            // Generate unique file name
-            String fileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
-            Path filePath = Paths.get(UPLOAD_DIR + fileName);
-            Files.write(filePath, image.getBytes());
-
-            imagePath = filePath.toString();
+            // Save the new image
+            String newFileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
+            Path newFilePath = Paths.get(UPLOAD_DIR + newFileName);
+            Files.write(newFilePath, image.getBytes());
+            updatedImagePath = "uploads/" + newFileName; // 🔹 Store with 'uploads/' path
         }
 
-        // Update category details
-        CategoryDTO updatedCategory = new CategoryDTO();
-        updatedCategory.setId(id);
-        updatedCategory.setName(name);
-        updatedCategory.setDescription(description);
-        updatedCategory.setImage(imagePath);
+        existingCategory.setName(name);
+        existingCategory.setDescription(description);
+        existingCategory.setImage(updatedImagePath); // Ensure correct path format
 
-        categoryService.updateCategory(updatedCategory);
-        return new ResponseUtil(200, "Category Updated Successfully", updatedCategory);
+        categoryService.updateCategory(existingCategory);
+
+        return new ResponseUtil(200, "Category Updated Successfully", existingCategory);
     }
 
+
     @DeleteMapping("delete/{id}")
+    public ResponseUtil deleteCategory(@PathVariable Long id) throws IOException {
+        CategoryDTO existingCategory = categoryService.getCategoryById(id);
+        if (existingCategory == null) {
+            return new ResponseUtil(404, "Category not found!", null);
+        }
+
+        // Delete image file if exists
+        String imagePath = existingCategory.getImage();
+        if (imagePath != null && !imagePath.isEmpty()) {
+            Path filePath = Paths.get(UPLOAD_DIR + imagePath);
+            Files.deleteIfExists(filePath);
+        }
+
+        categoryService.deleteCategory(id);
+
+        return new ResponseUtil(200, "Category Deleted Successfully", null);
+    }
+
+   /* @DeleteMapping("delete/{id}")
     public ResponseUtil deleteCategory(@PathVariable Long id) throws IOException {
         // Retrieve the category details
         CategoryDTO existingCategory = categoryService.getCategoryById(id);
@@ -122,12 +141,28 @@ public class CategoryController {
         categoryService.deleteCategory(id);
 
         return new ResponseUtil(200, "Category Deleted Successfully", null);
-    }
+    }*/
 
     @GetMapping("getAll")
-    public ResponseUtil getAllCategories() {
-        return new ResponseUtil(200, "All Categories Retrieved Successfully", categoryService.getAllCategories());
+    public ResponseEntity<ResponseDTO> getAllCategories() {
+        try {
+            List<CategoryDTO> categoryList = categoryService.getAllCategories();
+
+            // Fix image path formatting
+            for (CategoryDTO category : categoryList) {
+                if (category.getImage() != null) {
+                    category.setImage(category.getImage().replace("\\", "/")); // Replace backslashes with forward slashes
+                }
+            }
+
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseDTO(VarList.Created, "Success", categoryList));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+        }
     }
+
 
     @GetMapping("names")
     public ResponseUtil getCategoryNames() {
