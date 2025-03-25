@@ -78,30 +78,31 @@ public class CategoryController {
             return new ResponseUtil(404, "Category not found!", null);
         }
 
-        // If a new image is provided, replace the old one
         String updatedImagePath = existingCategory.getImage();
+
         if (image != null && !image.isEmpty()) {
-            // Delete the old image
+            // Delete the old image correctly
             if (updatedImagePath != null && !updatedImagePath.isEmpty()) {
-                Path oldImagePath = Paths.get(UPLOAD_DIR + updatedImagePath);
+                Path oldImagePath = Paths.get(updatedImagePath); // Correcting path issue
                 Files.deleteIfExists(oldImagePath);
             }
 
             // Save the new image
             String newFileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
-            Path newFilePath = Paths.get(UPLOAD_DIR + newFileName);
+            Path newFilePath = Paths.get(UPLOAD_DIR, newFileName); // Ensure correct path handling
             Files.write(newFilePath, image.getBytes());
-            updatedImagePath = "uploads/" + newFileName; // 🔹 Store with 'uploads/' path
+            updatedImagePath = "uploads/" + newFileName;
         }
 
         existingCategory.setName(name);
         existingCategory.setDescription(description);
-        existingCategory.setImage(updatedImagePath); // Ensure correct path format
+        existingCategory.setImage(updatedImagePath);
 
         categoryService.updateCategory(existingCategory);
 
         return new ResponseUtil(200, "Category Updated Successfully", existingCategory);
     }
+
 
 
     @DeleteMapping("delete/{id}")
