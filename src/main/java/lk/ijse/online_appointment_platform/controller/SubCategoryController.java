@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -51,7 +52,8 @@ public class SubCategoryController {
         subCategoryDTO.setName(name);
         subCategoryDTO.setDescription(description);
         subCategoryDTO.setCategoryId(categoryId);
-        subCategoryDTO.setImage(String.valueOf(filePath));
+        //subCategoryDTO.setImage(String.valueOf(filePath));
+        subCategoryDTO.setImage(filePath.toString().replace("\\", "/"));
 
         subCategoryService.addSubCategory(subCategoryDTO);
 
@@ -85,7 +87,8 @@ public class SubCategoryController {
             Path newFilePath = Paths.get(UPLOAD_DIR, newFileName);
             Files.write(newFilePath, image.getBytes());
 
-            updatedImagePath = newFilePath.toString();
+            //updatedImagePath = newFilePath.toString();
+            updatedImagePath = newFilePath.toString().replace("\\", "/");
         }
 
         existingSubCategory.setName(name);
@@ -96,6 +99,12 @@ public class SubCategoryController {
         subCategoryService.updateSubCategory(existingSubCategory);
 
         return new ResponseUtil(200, "SubCategory Updated Successfully", existingSubCategory);
+    }
+
+    @GetMapping(value = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllSubCategories() {
+        List<SubCategoryDTO> subCategoryDTOList = subCategoryService.getAllSubCategories();
+        return new ResponseUtil(200, "SubCategories fetched successfully", subCategoryDTOList);
     }
 
 }

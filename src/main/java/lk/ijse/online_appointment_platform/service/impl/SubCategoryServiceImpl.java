@@ -11,7 +11,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SubCategoryServiceImpl implements SubCategoryService {
@@ -70,6 +72,18 @@ public class SubCategoryServiceImpl implements SubCategoryService {
         } else {
             throw new RuntimeException("SubCategory not found for ID: " + subCategoryDTO.getId());
         }
+    }
+
+    @Override
+    public List<SubCategoryDTO> getAllSubCategories() {
+        List<SubCategory> subCategoryList = subCategoryRepository.findAll();
+        return subCategoryList.stream()
+                .map(subCategory -> {
+                    SubCategoryDTO dto = modelMapper.map(subCategory, SubCategoryDTO.class);
+                    dto.setImage(dto.getImage().replace("\\", "/"));  // Handle backslash to forward slash for paths
+                    return dto;
+                })
+                .collect(Collectors.toList());
     }
 
 }
