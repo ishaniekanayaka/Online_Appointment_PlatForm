@@ -57,4 +57,45 @@ public class SubCategoryController {
 
         return new ResponseUtil(200, "SubCategory Saved", subCategoryDTO);
     }
+
+    @PutMapping(value = "update/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateSubCategory(
+            @PathVariable Long id,
+            @RequestParam("name") String name,
+            @RequestParam("description") String description,
+            @RequestParam("categoryId") Long categoryId,
+            @RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
+
+        SubCategoryDTO existingSubCategory = subCategoryService.getSubCategoryById(id);
+        if (existingSubCategory == null) {
+            return new ResponseUtil(404, "SubCategory not found!", null);
+        }
+
+        String updatedImagePath = existingSubCategory.getImage();
+
+        if (image != null && !image.isEmpty()) {
+            // Delete old image
+            if (updatedImagePath != null && !updatedImagePath.isEmpty()) {
+                Path oldImagePath = Paths.get(updatedImagePath);
+                Files.deleteIfExists(oldImagePath);
+            }
+
+            // Save new image
+            String newFileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
+            Path newFilePath = Paths.get(UPLOAD_DIR, newFileName);
+            Files.write(newFilePath, image.getBytes());
+
+            updatedImagePath = newFilePath.toString();
+        }
+
+        existingSubCategory.setName(name);
+        existingSubCategory.setDescription(description);
+        existingSubCategory.setCategoryId(categoryId);
+        existingSubCategory.setImage(updatedImagePath);
+
+        subCategoryService.updateSubCategory(existingSubCategory);
+
+        return new ResponseUtil(200, "SubCategory Updated Successfully", existingSubCategory);
+    }
+
 }
