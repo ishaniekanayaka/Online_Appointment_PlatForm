@@ -86,4 +86,14 @@ public class SubCategoryServiceImpl implements SubCategoryService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void deleteSubCategory(Long id) {
+        Optional<SubCategory> subCategoryOptional = subCategoryRepository.findById(id);
+        if (subCategoryOptional.isPresent()) {
+            subCategoryRepository.delete(subCategoryOptional.get());
+        } else {
+            throw new RuntimeException("SubCategory not found for ID: " + id);
+        }
+    }
+
 }

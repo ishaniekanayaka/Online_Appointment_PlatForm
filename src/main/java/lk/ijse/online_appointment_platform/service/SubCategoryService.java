@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface SubCategoryService {
     void addSubCategory(SubCategoryDTO subCategoryDTO);
-    public SubCategoryDTO getSubCategoryById(Long id);
-    public void updateSubCategory(SubCategoryDTO subCategoryDTO);
-    public List<SubCategoryDTO> getAllSubCategories();
+    SubCategoryDTO getSubCategoryById(Long id);
+    void updateSubCategory(SubCategoryDTO subCategoryDTO);
+    List<SubCategoryDTO> getAllSubCategories();
+    void deleteSubCategory(Long id);
 }

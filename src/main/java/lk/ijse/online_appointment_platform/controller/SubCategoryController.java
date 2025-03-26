@@ -107,4 +107,26 @@ public class SubCategoryController {
         return new ResponseUtil(200, "SubCategories fetched successfully", subCategoryDTOList);
     }
 
+    @DeleteMapping(value = "delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteSubCategory(@PathVariable Long id) {
+        SubCategoryDTO subCategoryDTO = subCategoryService.getSubCategoryById(id);
+        if (subCategoryDTO == null) {
+            return new ResponseUtil(404, "SubCategory not found!", null);
+        }
+
+        // Delete the image if exists
+        if (subCategoryDTO.getImage() != null && !subCategoryDTO.getImage().isEmpty()) {
+            Path imagePath = Paths.get(subCategoryDTO.getImage());
+            try {
+                Files.deleteIfExists(imagePath);
+            } catch (IOException e) {
+                return new ResponseUtil(500, "Failed to delete image", null);
+            }
+        }
+
+        subCategoryService.deleteSubCategory(id);
+
+        return new ResponseUtil(200, "SubCategory Deleted Successfully", null);
+    }
+
 }
