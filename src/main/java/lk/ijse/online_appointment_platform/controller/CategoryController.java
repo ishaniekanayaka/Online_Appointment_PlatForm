@@ -112,10 +112,10 @@ public class CategoryController {
             return new ResponseUtil(404, "Category not found!", null);
         }
 
-        // Delete image file if exists
+        // Delete image file if it exists
         String imagePath = existingCategory.getImage();
         if (imagePath != null && !imagePath.isEmpty()) {
-            Path filePath = Paths.get(UPLOAD_DIR + imagePath);
+            Path filePath = Paths.get(imagePath); // Ensure correct path handling
             Files.deleteIfExists(filePath);
         }
 
@@ -123,6 +123,7 @@ public class CategoryController {
 
         return new ResponseUtil(200, "Category Deleted Successfully", null);
     }
+
 
 
     @GetMapping("getAll")

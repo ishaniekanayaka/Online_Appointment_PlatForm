@@ -103,4 +103,21 @@ public class UserController {
                     .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
         }
     }
+
+    @GetMapping("emails")
+    public ResponseUtil getUserEmails() {
+        return new ResponseUtil(200, "User Emails Retrieved Successfully",
+                userService.getUserEmails());
+    }
+
+    @GetMapping("email/{email}")
+    public ResponseEntity<ResponseUtil> getUserByEmail(@PathVariable String email) {
+        UserDTO user = userService.getUserByEmail(email);
+
+        if (user != null) {
+            return ResponseEntity.ok(new ResponseUtil(200, "User Retrieved Successfully", user));
+        }
+        return ResponseEntity.status(404).body(new ResponseUtil(404, "User Not Found: " + email, null));
+    }
+
 }

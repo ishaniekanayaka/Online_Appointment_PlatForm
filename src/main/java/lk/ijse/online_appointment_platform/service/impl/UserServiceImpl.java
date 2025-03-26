@@ -1,11 +1,9 @@
 package lk.ijse.online_appointment_platform.service.impl;
 
-
 import lk.ijse.online_appointment_platform.dto.UserDTO;
 import lk.ijse.online_appointment_platform.entity.User;
 import lk.ijse.online_appointment_platform.repo.UserRepository;
 import lk.ijse.online_appointment_platform.service.UserService;
-import lk.ijse.online_appointment_platform.util.ResponseUtil;
 import lk.ijse.online_appointment_platform.util.VarList;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +14,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 
 @Service
 @Transactional
@@ -36,18 +31,21 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Autowired
     private ModelMapper modelMapper;
 
-
-
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), getAuthority(user));
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(), user.getPassword(), getAuthority(user)
+        );
     }
 
     public UserDTO loadUserDetailsByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username);
-        return modelMapper.map(user,UserDTO.class);
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + username));
+
+        return modelMapper.map(user, UserDTO.class);
     }
 
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
@@ -58,12 +56,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public UserDTO searchUser(String username) {
-        if (userRepository.existsByEmail(username)) {
-            User user=userRepository.findByEmail(username);
-            return modelMapper.map(user,UserDTO.class);
-        } else {
-            return null;
-        }
+        return userRepository.findByEmail(username)
+                .map(user -> modelMapper.map(user, UserDTO.class))
+                .orElse(null);
     }
 
     @Override
@@ -73,7 +68,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         } else {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-           // userDTO.setRole("USER");
+
             userRepository.save(modelMapper.map(userDTO, User.class));
             return VarList.Created;
         }
@@ -121,6 +116,24 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         }
         return false;
     }
+
+    @Override
+    public List<String> getUserEmails() {
+        return userRepository.getUserEmails();
+    }
+
+    @Override
+    public UserDTO getUserByEmail(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+
+        // Debugging logs
+        System.out.println("User search for email: " + email);
+        userOptional.ifPresentOrElse(
+                user -> System.out.println("User found: " + user.getEmail()),
+                () -> System.out.println("User not found!")
+        );
+
+        return userOptional.map(user -> modelMapper.map(user, UserDTO.class)).orElse(null);
+    }
+
 }
-
-
