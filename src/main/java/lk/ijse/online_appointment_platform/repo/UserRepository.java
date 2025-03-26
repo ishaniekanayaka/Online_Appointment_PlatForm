@@ -24,7 +24,7 @@ public interface UserRepository extends JpaRepository<User,String> {
 
     // Correct method signature to return Optional<User>
     @Query("SELECT u FROM User u WHERE u.email = :email")
-   // Optional<User> findByEmail(@Param("email") String email);
+    // Optional<User> findByEmail(@Param("email") String email);
 
     Optional<User> findByEmail(String email);
 

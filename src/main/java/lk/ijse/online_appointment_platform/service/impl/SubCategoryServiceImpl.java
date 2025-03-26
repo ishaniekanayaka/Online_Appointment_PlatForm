@@ -11,6 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class SubCategoryServiceImpl implements SubCategoryService {
 
@@ -23,7 +25,7 @@ public class SubCategoryServiceImpl implements SubCategoryService {
     @Autowired
     private ModelMapper modelMapper;
 
-    @Override
+   /* @Override
     public void addSubCategory(SubCategoryDTO subCategoryDTO) {
         // Create a new SubCategory entity
         SubCategory subCategory = new SubCategory();
@@ -42,6 +44,23 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 
         // Save the SubCategory entity
         subCategoryRepository.save(subCategory);
+    }*/
+
+
+
+    public void addSubCategory(SubCategoryDTO subCategoryDTO) {
+        Optional<Category> categoryOptional = categoryRepository.findById(subCategoryDTO.getCategoryId());
+        if (categoryOptional.isPresent()) {
+            SubCategory subCategory = new SubCategory();
+            subCategory.setName(subCategoryDTO.getName());
+            subCategory.setDescription(subCategoryDTO.getDescription());
+            subCategory.setImage(subCategoryDTO.getImage());
+            subCategory.setCategory(categoryOptional.get()); // Linking with parent category
+
+            subCategoryRepository.save(subCategory);
+        } else {
+            throw new RuntimeException("Category not found for ID: " + subCategoryDTO.getCategoryId());
+        }
     }
 
 }

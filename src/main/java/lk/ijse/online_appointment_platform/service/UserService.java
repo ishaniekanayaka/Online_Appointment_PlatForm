@@ -1,3 +1,4 @@
+
 package lk.ijse.online_appointment_platform.service;
 
 
@@ -9,7 +10,7 @@ import java.util.List;
 public interface UserService {
     int saveUser(UserDTO userDTO);
     UserDTO searchUser(String username);
-     List<UserDTO> getAllUsers();
+    List<UserDTO> getAllUsers();
     boolean changeUserStatus(int id, boolean status);
     boolean updateUser(UserDTO userDTO);
     List<String>getUserEmails();

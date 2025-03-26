@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class SubCategoryDTO {
-    private String id;
+    private Long id;
     private String name;
     private String description;
     private String image;
