@@ -15,11 +15,6 @@ public class WebAppConfig implements WebMvcConfigurer {
         return new ModelMapper();
     }
 
-    @Override
-    /*public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/uploads/**")
-                .addResourceLocations("file:uploads/");
-    }*/
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // Dynamically get the absolute path for the uploads directory
         String uploadPath = Paths.get("uploads").toAbsolutePath().toUri().toString();
@@ -27,4 +22,5 @@ public class WebAppConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations(uploadPath);
     }
+
 }

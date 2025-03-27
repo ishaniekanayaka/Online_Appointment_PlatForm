@@ -24,7 +24,7 @@ public class SubCategoryController {
     @Autowired
     private SubCategoryService subCategoryService;
 
-    private static final String UPLOAD_DIR = "upload/";
+    private static final String UPLOAD_DIR = "uploads/";
 
     @PostMapping(value = "save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveSubCategory(
