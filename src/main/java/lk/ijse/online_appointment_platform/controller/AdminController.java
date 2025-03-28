@@ -38,6 +38,12 @@ public class AdminController {
     public String checks(){
         return "you are User :-)";
     }
+
+    @GetMapping("/test3")
+    @PreAuthorize("hasAuthority('GIG')")
+    public String checkss(){
+        return "you are User :-)";
+    }
 }
 
 
