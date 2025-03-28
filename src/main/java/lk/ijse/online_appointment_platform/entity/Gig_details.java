@@ -23,7 +23,7 @@ public class Gig_details {
     private Double amountCharge;
     private String location;
     // Adding contact number
-    private String contactNumber;
+    private Integer contactNumber;
 
     @Column(nullable = false)
     private Integer maxAppointmentsPerDay;
