@@ -15,4 +15,6 @@ public interface UserService {
     boolean updateUser(UserDTO userDTO);
     List<String>getUserEmails();
     UserDTO getUserByEmail(String email);
+  //  List<Integer> getUserIds();
+
 }

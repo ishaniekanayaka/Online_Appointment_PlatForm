@@ -2,6 +2,7 @@ package lk.ijse.online_appointment_platform.repo;
 
 
 
+import lk.ijse.online_appointment_platform.entity.SubCategory;
 import lk.ijse.online_appointment_platform.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,5 +28,7 @@ public interface UserRepository extends JpaRepository<User,String> {
     // Optional<User> findByEmail(@Param("email") String email);
 
     Optional<User> findByEmail(String email);
+
+    //List<User> findByUserId(Integer userId);
 
 }

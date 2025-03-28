@@ -29,7 +29,6 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<SubCategory> subCategories;
 
-    @OneToMany(mappedBy = "category")
-    private List<Gig_details> gigs;
+
 
 }

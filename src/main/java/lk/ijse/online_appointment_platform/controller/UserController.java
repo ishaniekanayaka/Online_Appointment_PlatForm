@@ -120,4 +120,6 @@ public class UserController {
         return ResponseEntity.status(404).body(new ResponseUtil(404, "User Not Found: " + email, null));
     }
 
+    
+
 }

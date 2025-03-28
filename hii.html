@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gig Appointment Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+
+        .gig-info h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .gig-info p {
+            color: #777;
+        }
+
+        .time-slot-container {
+            margin-top: 20px;
+        }
+
+        .time-slot {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #3498db;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .time-slot:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .time-slot.selected {
+            background-color: #2ecc71;
+            color: white;
+            border: 1px solid #2ecc71;
+        }
+
+        button {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #27ae60;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Book an Appointment</h2>
+
+    <!-- Gig Details -->
+    <div class="gig-info">
+        <h3 id="gigTitle">Photography Service</h3>
+        <p id="gigDescription">Professional photography session for portraits, events, and more.</p>
+    </div>
+
+    <!-- Available Time Slots -->
+    <div class="time-slot-container">
+        <h3>Available Time Slots</h3>
+        <div id="timeSlots">
+            <!-- Slots will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Booking Button -->
+    <button id="bookAppointmentBtn" disabled>Book Appointment</button>
+</div>
+
+<script>
+    // Simulated available time slots (would come from backend in real scenario)
+    const availableSlots = [
+        { id: 1, time: "09:00 AM - 10:00 AM", booked: false },
+        { id: 2, time: "10:00 AM - 11:00 AM", booked: false },
+        { id: 3, time: "11:00 AM - 12:00 PM", booked: false },
+        { id: 4, time: "02:00 PM - 03:00 PM", booked: false },
+        { id: 5, time: "03:00 PM - 04:00 PM", booked: false }
+    ];
+
+    const timeSlotsContainer = document.getElementById("timeSlots");
+    const bookAppointmentBtn = document.getElementById("bookAppointmentBtn");
+    let selectedSlotId = null;
+
+    // Load time slots dynamically
+    function loadTimeSlots() {
+        timeSlotsContainer.innerHTML = ""; // Clear previous slots
+        availableSlots.forEach(slot => {
+            const slotDiv = document.createElement("div");
+            slotDiv.classList.add("time-slot");
+            slotDiv.innerText = slot.time;
+            slotDiv.dataset.id = slot.id;
+
+            // If slot is already booked, disable selection
+            if (slot.booked) {
+                slotDiv.style.opacity = "0.5";
+                slotDiv.style.cursor = "not-allowed";
+            } else {
+                slotDiv.addEventListener("click", () => selectSlot(slotDiv, slot.id));
+            }
+
+            timeSlotsContainer.appendChild(slotDiv);
+        });
+    }
+
+    // Select a time slot
+    function selectSlot(element, slotId) {
+        document.querySelectorAll(".time-slot").forEach(slot => slot.classList.remove("selected"));
+        element.classList.add("selected");
+        selectedSlotId = slotId;
+        bookAppointmentBtn.disabled = false;
+    }
+
+    // Handle booking
+    bookAppointmentBtn.addEventListener("click", () => {
+        if (selectedSlotId === null) return;
+
+        // Simulate booking request
+        fetch("http://localhost:8080/api/bookAppointment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ gigHolderId: 1, date: "2025-03-30", timeSlotId: selectedSlotId })
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert("Appointment booked successfully!");
+                // Mark slot as booked in UI
+                availableSlots.find(slot => slot.id === selectedSlotId).booked = true;
+                loadTimeSlots();
+                bookAppointmentBtn.disabled = true;
+            })
+            .catch(error => console.error("Error booking appointment:", error));
+    });
+
+    // Load time slots on page load
+    loadTimeSlots();
+
+</script>
+</body>
+</html>
