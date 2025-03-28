@@ -65,41 +65,39 @@ public class SubCategoryController {
             @PathVariable Long id,
             @RequestParam("name") String name,
             @RequestParam("description") String description,
-            @RequestParam("categoryId") Long categoryId,
             @RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
 
         SubCategoryDTO existingSubCategory = subCategoryService.getSubCategoryById(id);
+
         if (existingSubCategory == null) {
-            return new ResponseUtil(404, "SubCategory not found!", null);
+            return new ResponseUtil(404, "SubCategory Not Found", null);
         }
 
-        String updatedImagePath = existingSubCategory.getImage();
+        String imagePath = existingSubCategory.getImage();
 
         if (image != null && !image.isEmpty()) {
-            // Delete old image
-            if (updatedImagePath != null && !updatedImagePath.isEmpty()) {
-                Path oldImagePath = Paths.get(updatedImagePath);
-                Files.deleteIfExists(oldImagePath);
+            // Save the new image
+            File uploadDir = new File(UPLOAD_DIR);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs();
             }
 
-            // Save new image
-            String newFileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
-            Path newFilePath = Paths.get(UPLOAD_DIR, newFileName);
-            Files.write(newFilePath, image.getBytes());
+            String fileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
+            Path filePath = Paths.get(UPLOAD_DIR, fileName);
+            Files.write(filePath, image.getBytes());
 
-            //updatedImagePath = newFilePath.toString();
-            updatedImagePath = newFilePath.toString().replace("\\", "/");
+            imagePath = filePath.toString().replace("\\", "/");
         }
 
         existingSubCategory.setName(name);
         existingSubCategory.setDescription(description);
-        existingSubCategory.setCategoryId(categoryId);
-        existingSubCategory.setImage(updatedImagePath);
+        existingSubCategory.setImage(imagePath);
 
         subCategoryService.updateSubCategory(existingSubCategory);
 
         return new ResponseUtil(200, "SubCategory Updated Successfully", existingSubCategory);
     }
+
 
     @GetMapping(value = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllSubCategories() {

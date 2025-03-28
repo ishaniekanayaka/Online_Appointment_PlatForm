@@ -1,6 +1,7 @@
 package lk.ijse.online_appointment_platform.service;
 
 import lk.ijse.online_appointment_platform.dto.CategoryDTO;
+import lk.ijse.online_appointment_platform.entity.SubCategory;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface CategoryService {
     CategoryDTO getCategoryById(Long id);
     List<String>getCategoryNames();
     CategoryDTO getCategoryByName(String name);
+    public List<SubCategory> getSubCategoriesByCategoryId(Long categoryId);
 }

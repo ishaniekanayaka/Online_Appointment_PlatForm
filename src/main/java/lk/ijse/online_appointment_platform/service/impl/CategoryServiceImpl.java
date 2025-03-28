@@ -2,7 +2,9 @@ package lk.ijse.online_appointment_platform.service.impl;
 
 import lk.ijse.online_appointment_platform.dto.CategoryDTO;
 import lk.ijse.online_appointment_platform.entity.Category;
+import lk.ijse.online_appointment_platform.entity.SubCategory;
 import lk.ijse.online_appointment_platform.repo.CategoryRepository;
+import lk.ijse.online_appointment_platform.repo.SubCategoryRepository;
 import lk.ijse.online_appointment_platform.service.CategoryService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -15,6 +17,9 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private SubCategoryRepository subCategoryRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -62,5 +67,11 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = categoryRepository.findByName(name)
                 .orElseThrow(() -> new RuntimeException("Customer does not exist"));
         return modelMapper.map(category, CategoryDTO.class);
+    }
+
+    @Override
+    public List<SubCategory> getSubCategoriesByCategoryId(Long categoryId) {
+        // Fetch subcategories for the selected category
+        return subCategoryRepository.findByCategoryId(categoryId);
     }
 }

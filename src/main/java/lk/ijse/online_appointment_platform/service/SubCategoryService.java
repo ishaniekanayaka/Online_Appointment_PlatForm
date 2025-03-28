@@ -11,4 +11,5 @@ public interface SubCategoryService {
     void updateSubCategory(SubCategoryDTO subCategoryDTO);
     List<SubCategoryDTO> getAllSubCategories();
     void deleteSubCategory(Long id);
+
 }

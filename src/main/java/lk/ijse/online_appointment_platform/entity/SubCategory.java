@@ -1,5 +1,6 @@
 package lk.ijse.online_appointment_platform.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,10 +21,11 @@ public class SubCategory {
     private String image;
 
     @ManyToOne
+    @JsonBackReference // Prevent circular reference
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "subCategory")
+  /*  @OneToMany(mappedBy = "subCategory")
     private List<Gig> gigs;
-
+*/
 }

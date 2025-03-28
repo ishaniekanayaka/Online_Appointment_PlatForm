@@ -4,6 +4,7 @@ import lk.ijse.online_appointment_platform.dto.CategoryDTO;
 import lk.ijse.online_appointment_platform.dto.ResponseDTO;
 import lk.ijse.online_appointment_platform.dto.UserDTO;
 import lk.ijse.online_appointment_platform.entity.Category;
+import lk.ijse.online_appointment_platform.entity.SubCategory;
 import lk.ijse.online_appointment_platform.service.CategoryService;
 import lk.ijse.online_appointment_platform.util.ResponseUtil;
 import lk.ijse.online_appointment_platform.util.VarList;
@@ -171,5 +172,10 @@ public class CategoryController {
     }
 
 
+    // Fetch all subcategories based on category ID
+    @GetMapping("{categoryId}/subcategories")
+    public List<SubCategory> getSubCategoriesByCategory(@PathVariable Long categoryId) {
+        return categoryService.getSubCategoriesByCategoryId(categoryId);
+    }
 
 }
