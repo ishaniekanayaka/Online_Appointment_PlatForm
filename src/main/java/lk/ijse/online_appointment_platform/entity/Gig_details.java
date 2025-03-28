@@ -51,33 +51,41 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-public class Gig {
+public class Gig_details {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String name;
-    private String password;
+    private String FullName;
     private String image;
-    private String dob;
     private String degree;
     private String experience;
-    private String email;
     private Double amountCharge;
+    private String location;
+    // Adding contact number
+    private String contactNumber;
+
+    @Column(nullable = false)
+    private Integer maxAppointmentsPerDay;
+
+    private boolean active = false;
+
+    @Column(nullable = false)
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "subcategory_id")
-    private SubCategory subCategory;
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @OneToMany(mappedBy = "gig")
     private List<Review> reviews;

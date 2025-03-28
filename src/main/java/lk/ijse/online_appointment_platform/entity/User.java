@@ -22,7 +22,7 @@ public class User implements Serializable {
     private String dob;
     private String password;
     private String role;
-    private boolean active = true;
+    private boolean active = false;
 
     @OneToMany(mappedBy = "user")
     private List<Appointment> appointments;
@@ -31,7 +31,7 @@ public class User implements Serializable {
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "user")
-    private List<Gig> gigs;
+    private List<Gig_details> gigs;
 
    /* @OneToMany(mappedBy = "user")
     private List<Category> categories;*/

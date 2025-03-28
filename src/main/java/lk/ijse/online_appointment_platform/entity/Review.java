@@ -21,6 +21,6 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "gig_id")
-    private Gig gig;
+    private Gig_details gig;
 
 }

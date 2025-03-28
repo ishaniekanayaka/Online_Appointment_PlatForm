@@ -25,8 +25,11 @@ public class Category {
    /* @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;*/
-   @JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<SubCategory> subCategories;
+
+    @OneToMany(mappedBy = "category")
+    private List<Gig_details> gigs;
 
 }

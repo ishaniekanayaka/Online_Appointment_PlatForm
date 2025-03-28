@@ -74,4 +74,5 @@ public class CategoryServiceImpl implements CategoryService {
         // Fetch subcategories for the selected category
         return subCategoryRepository.findByCategoryId(categoryId);
     }
+
 }

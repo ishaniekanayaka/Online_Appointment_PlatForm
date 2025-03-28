@@ -14,4 +14,5 @@ public interface CategoryService {
     List<String>getCategoryNames();
     CategoryDTO getCategoryByName(String name);
     public List<SubCategory> getSubCategoriesByCategoryId(Long categoryId);
+  //  public List<SubCategory> getSubCategoriesByCategoryName(String categoryName);
 }
