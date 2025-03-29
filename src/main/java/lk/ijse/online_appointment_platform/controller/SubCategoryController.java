@@ -1,5 +1,6 @@
 package lk.ijse.online_appointment_platform.controller;
 
+import lk.ijse.online_appointment_platform.dto.CategoryDTO;
 import lk.ijse.online_appointment_platform.dto.SubCategoryDTO;
 import lk.ijse.online_appointment_platform.dto.ResponseDTO;
 import lk.ijse.online_appointment_platform.service.SubCategoryService;
@@ -126,5 +127,20 @@ public class SubCategoryController {
 
         return new ResponseUtil(200, "SubCategory Deleted Successfully", null);
     }
+
+    @GetMapping("names")
+    public ResponseUtil getSubCategoryNames() {
+        return new ResponseUtil(200, "Category Names Retrieved Successfully", subCategoryService.getSubCategoryNames());
+    }
+
+    @GetMapping("name/{name}")
+    public ResponseUtil getSubCategoryByName(@PathVariable String name) {
+        SubCategoryDTO subCategoryDTO = subCategoryService.getSubCategoryByName(name);
+        if (subCategoryDTO != null && subCategoryDTO.getImage() != null) {
+            subCategoryDTO.setImage(subCategoryDTO.getImage().replace("\\", "/"));
+        }
+        return new ResponseUtil(200, "SubCategory Retrieved Successfully", subCategoryDTO);
+    }
+
 
 }

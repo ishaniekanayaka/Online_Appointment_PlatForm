@@ -11,5 +11,6 @@ public interface SubCategoryService {
     void updateSubCategory(SubCategoryDTO subCategoryDTO);
     List<SubCategoryDTO> getAllSubCategories();
     void deleteSubCategory(Long id);
-
+    List<String>getSubCategoryNames();
+    SubCategoryDTO getSubCategoryByName(String name);
 }

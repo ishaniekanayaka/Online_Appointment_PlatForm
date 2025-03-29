@@ -96,4 +96,17 @@ public class SubCategoryServiceImpl implements SubCategoryService {
         }
     }
 
+    @Override
+    public List<String> getSubCategoryNames() {
+        return subCategoryRepository.getSubCategoryNames();
+    }
+
+    @Override
+    public SubCategoryDTO getSubCategoryByName(String name) {
+        SubCategory subCategory = subCategoryRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("SubCategory does not exist"));
+        return modelMapper.map(subCategory, SubCategoryDTO.class);
+    }
+
+
 }

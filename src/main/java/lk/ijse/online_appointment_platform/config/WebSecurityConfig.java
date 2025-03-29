@@ -65,7 +65,7 @@ public class WebSecurityConfig {
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
                                 "/uploads/**",
-                                "/upload/**",
+
                                 "/swagger-ui.html").permitAll()
 
                         .anyRequest().authenticated()
