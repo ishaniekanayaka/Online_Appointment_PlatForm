@@ -31,7 +31,48 @@ public class AuthController {
         this.responseDTO = responseDTO;
     }
 
+
     @PostMapping("/authenticate")
+    public ResponseEntity<ResponseDTO> authenticate(@RequestBody UserDTO userDTO) {
+        try {
+            UserDTO loadedUser = userService.loadUserDetailsByUsername(userDTO.getEmail());
+
+            if (loadedUser == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new ResponseDTO(VarList.Not_Found, "User not found", null));
+            }
+
+            // Prevent inactive users from logging in
+            if (!loadedUser.isActive()) {
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+                        .body(new ResponseDTO(VarList.Not_Acceptable, "Your account is inactive. Please contact support.", null));
+            }
+
+            // Authenticate the user
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword()));
+
+            // Generate JWT Token
+            String token = jwtUtil.generateToken(loadedUser);
+            if (token == null || token.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body(new ResponseDTO(VarList.Conflict, "Authorization Failure! Please Try Again", null));
+            }
+
+            AuthDTO authDTO = new AuthDTO();
+            authDTO.setEmail(loadedUser.getEmail());
+            authDTO.setToken(token);
+
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(new ResponseDTO(VarList.Created, "Success", authDTO));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ResponseDTO(VarList.Unauthorized, "Invalid Credentials", e.getMessage()));
+        }
+    }
+
+/*
     public ResponseEntity<ResponseDTO> authenticate(@RequestBody UserDTO userDTO) {
         try {
             authenticationManager.authenticate(
@@ -60,6 +101,7 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new ResponseDTO(VarList.Created, "Success", authDTO));
     }
+*/
 
 }
 
