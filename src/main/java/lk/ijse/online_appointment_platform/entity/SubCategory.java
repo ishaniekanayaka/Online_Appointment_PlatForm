@@ -25,6 +25,10 @@ public class SubCategory {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    public Category getCategory() {
+        return this.category;
+    }
+
   /*  @OneToMany(mappedBy = "subCategory")
     private List<Gig> gigs;
 */
