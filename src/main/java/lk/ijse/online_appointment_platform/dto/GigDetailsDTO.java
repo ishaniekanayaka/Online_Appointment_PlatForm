@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @AllArgsConstructor
@@ -24,21 +25,21 @@ public class GigDetailsDTO {
     private String contactNumber;
     private Integer maxAppointmentsPerDay;
     private boolean active;
-    private LocalDate date;
+
+    private LocalDateTime dateTime;  // Changed from LocalDate to LocalDateTime
+
     @NotNull(message = "User ID cannot be null")
     private Integer userId;
 
-    @NotNull(message = "Category ID cannot be null")
+
     private Long categoryId;
 
+    @NotNull(message = "Subcategory ID cannot be null") // New field for Subcategory ID
+    private Long subCategoryId;
 
-    // Getters and Setters
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(String dateStr) {
-        this.date = (dateStr == null || dateStr.isEmpty()) ? LocalDate.now() : LocalDate.parse(dateStr);
+    // Auto-set the dateTime if not provided
+    public LocalDateTime getDateTime() {
+        return (dateTime == null) ? LocalDateTime.now() : dateTime;
     }
 
 }
