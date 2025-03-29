@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -31,7 +32,19 @@ public class Gig_details {
     private boolean active = false;
 
     @Column(nullable = false)
-    private LocalDate date;
+    private LocalDateTime dateTime;
+
+    @PrePersist
+    protected void setDefaultDateTime() {
+        if (this.dateTime == null) {
+            this.dateTime = LocalDateTime.now();
+        }
+    }
+
+    @PreUpdate
+    protected void updateDateTime() {
+        this.dateTime = LocalDateTime.now();
+    }
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -40,6 +53,14 @@ public class Gig_details {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id")  // New Subcategory field
+    private SubCategory subCategory;
+
+    /*@ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;*/
 
     @OneToMany(mappedBy = "gig")
     private List<Review> reviews;
