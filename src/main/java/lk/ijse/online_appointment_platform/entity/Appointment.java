@@ -17,14 +17,15 @@ import java.util.List;
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private Long id;
     @Column(nullable = false)
-    private LocalDateTime date;  // Use LocalDateTime instead of Date for both date and time
+    private LocalDateTime dateTime;  // Use LocalDateTime instead of Date for both date and time
 
     @PrePersist
     protected void onCreate() {
-        if (this.date == null) {
-            this.date = LocalDateTime.now();  // Sets current date and time automatically
+        if (this.dateTime == null) {
+            this.dateTime = LocalDateTime.now();  // Sets current date and time automatically
         }
     }
 
@@ -32,8 +33,6 @@ public class Appointment {
     @JoinColumn(name = "gig_id")  // Foreign key to Gig_details
     private Gig_details gig;
 
-    @Column(nullable = false)
-    private LocalDateTime dateTime;  // Use LocalDateTime for date and time
 
     @ManyToOne
     @JoinColumn(name = "user_id")
