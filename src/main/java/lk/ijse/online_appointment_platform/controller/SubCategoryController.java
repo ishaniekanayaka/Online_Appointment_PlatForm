@@ -3,6 +3,7 @@ package lk.ijse.online_appointment_platform.controller;
 import lk.ijse.online_appointment_platform.dto.CategoryDTO;
 import lk.ijse.online_appointment_platform.dto.SubCategoryDTO;
 import lk.ijse.online_appointment_platform.dto.ResponseDTO;
+import lk.ijse.online_appointment_platform.entity.Gig_details;
 import lk.ijse.online_appointment_platform.service.SubCategoryService;
 import lk.ijse.online_appointment_platform.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -140,6 +141,11 @@ public class SubCategoryController {
             subCategoryDTO.setImage(subCategoryDTO.getImage().replace("\\", "/"));
         }
         return new ResponseUtil(200, "SubCategory Retrieved Successfully", subCategoryDTO);
+    }
+
+    @GetMapping("{subCategoryId}/gigs")
+    public List<Gig_details>getGigBySubCategory(@PathVariable Long subCategoryId){
+        return subCategoryService.getGigsBySubCategoryId(subCategoryId);
     }
 
 

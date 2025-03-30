@@ -88,4 +88,6 @@ public class GigDetailsController {
         return new ResponseUtil(200, "Gig details saved successfully", gigDetailsDTO);
     }
 
+
+
 }

@@ -3,8 +3,10 @@ package lk.ijse.online_appointment_platform.service.impl;
 import lk.ijse.online_appointment_platform.dto.CategoryDTO;
 import lk.ijse.online_appointment_platform.dto.SubCategoryDTO;
 import lk.ijse.online_appointment_platform.entity.Category;
+import lk.ijse.online_appointment_platform.entity.Gig_details;
 import lk.ijse.online_appointment_platform.entity.SubCategory;
 import lk.ijse.online_appointment_platform.repo.CategoryRepository;
+import lk.ijse.online_appointment_platform.repo.GigDetailsRepository;
 import lk.ijse.online_appointment_platform.repo.SubCategoryRepository;
 import lk.ijse.online_appointment_platform.service.SubCategoryService;
 import org.modelmapper.ModelMapper;
@@ -26,6 +28,9 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private GigDetailsRepository gigDetailsRepository;
 
 
 
@@ -106,6 +111,11 @@ public class SubCategoryServiceImpl implements SubCategoryService {
         SubCategory subCategory = subCategoryRepository.findByName(name)
                 .orElseThrow(() -> new RuntimeException("SubCategory does not exist"));
         return modelMapper.map(subCategory, SubCategoryDTO.class);
+    }
+
+    @Override
+    public List<Gig_details> getGigsBySubCategoryId(Long subCategoryId) {
+        return gigDetailsRepository.findBySubCategoryId(subCategoryId);
     }
 
 

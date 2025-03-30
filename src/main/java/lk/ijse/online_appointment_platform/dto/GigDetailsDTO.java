@@ -28,13 +28,13 @@ public class GigDetailsDTO {
 
     private LocalDateTime dateTime;  // Changed from LocalDate to LocalDateTime
 
-    @NotNull(message = "User ID cannot be null")
+
     private Integer userId;
 
 
     private Long categoryId;
 
-    @NotNull(message = "Subcategory ID cannot be null") // New field for Subcategory ID
+   // New field for Subcategory ID
     private Long subCategoryId;
 
     // Auto-set the dateTime if not provided
