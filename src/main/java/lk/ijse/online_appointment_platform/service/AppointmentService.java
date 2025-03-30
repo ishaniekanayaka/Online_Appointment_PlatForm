@@ -9,5 +9,6 @@ public interface AppointmentService {
     public void bookAppointment(AppointmentDTO appointmentDTO);
     public void acceptBooking(Long availabilityId);
     public void completeBooking(Long availabilityId);
+    public void cancelBooking(Long availabilityId);
 
 }

@@ -132,6 +132,26 @@ public class AppointmentServiceImpl implements AppointmentService {
         System.out.println("Booking accepted, status changed to: " + AvailabilityStatus.BOOKING);
     }
 
+    // Cancel a booking
+    @Transactional
+    public void cancelBooking(Long availabilityId) {
+        // Retrieve the Availability object by ID
+        Availability availability = availabilityRepository.findById(availabilityId)
+                .orElseThrow(() -> new RuntimeException("Availability not found"));
+
+        // Check if the status is already CANCELLED or COMPLETED, so we can't cancel it again
+        if (availability.getStatus() == AvailabilityStatus.CANCELLED || availability.getStatus() == AvailabilityStatus.COMPLETED) {
+            throw new RuntimeException("This booking has already been cancelled or completed.");
+        }
+
+        // Update the status to CANCELLED
+        availability.setStatus(AvailabilityStatus.CANCELLED);
+        availabilityRepository.save(availability);
+
+        // Optionally, log the status change
+        System.out.println("Booking cancelled, status changed to: " + AvailabilityStatus.CANCELLED);
+    }
+
 
     /*@Transactional
     public void acceptAppointment(Long availabilityId) {

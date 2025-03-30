@@ -76,6 +76,18 @@ public class AppointmentController {
         return ResponseEntity.ok(pendingBookings);
     }
 
+    // Endpoint to cancel the booking
+    @PutMapping("/cancel/{availabilityId}")
+    public ResponseEntity<String> cancelBooking(@PathVariable Long availabilityId) {
+        try {
+            appointmentService.cancelBooking(availabilityId);
+            return ResponseEntity.ok("Booking cancelled successfully.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+
 
 }
 
