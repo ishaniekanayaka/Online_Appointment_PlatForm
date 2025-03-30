@@ -1,4 +1,4 @@
-package lk.ijse.online_appointment_platform.entity;
+package lk.ijse.online_appointment_platform.enumClass;
 
 public enum AvailabilityStatus {
     PENDING,    // When an appointment is booked but not yet accepted

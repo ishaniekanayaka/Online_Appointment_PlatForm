@@ -1,7 +1,7 @@
 package lk.ijse.online_appointment_platform.repo;
 
 import lk.ijse.online_appointment_platform.entity.Availability;
-import lk.ijse.online_appointment_platform.entity.AvailabilityStatus;
+import lk.ijse.online_appointment_platform.enumClass.AvailabilityStatus;
 import lk.ijse.online_appointment_platform.entity.Gig_details;
 import lk.ijse.online_appointment_platform.entity.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;

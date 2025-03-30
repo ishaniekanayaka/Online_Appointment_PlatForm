@@ -1,6 +1,7 @@
 package lk.ijse.online_appointment_platform.entity;
 
 import jakarta.persistence.*;
+import lk.ijse.online_appointment_platform.enumClass.AvailabilityStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

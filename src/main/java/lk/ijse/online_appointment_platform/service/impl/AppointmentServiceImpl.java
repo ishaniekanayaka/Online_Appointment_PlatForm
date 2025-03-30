@@ -3,6 +3,7 @@ package lk.ijse.online_appointment_platform.service.impl;
 import jakarta.transaction.Transactional;
 import lk.ijse.online_appointment_platform.dto.AppointmentDTO;
 import lk.ijse.online_appointment_platform.entity.*;
+import lk.ijse.online_appointment_platform.enumClass.AvailabilityStatus;
 import lk.ijse.online_appointment_platform.repo.AppointmentRepository;
 import lk.ijse.online_appointment_platform.repo.AvailabilityRepository;
 import lk.ijse.online_appointment_platform.repo.GigDetailsRepository;
