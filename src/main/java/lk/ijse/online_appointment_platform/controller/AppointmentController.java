@@ -2,7 +2,10 @@ package lk.ijse.online_appointment_platform.controller;
 
 import lk.ijse.online_appointment_platform.dto.AppointmentDTO;
 import lk.ijse.online_appointment_platform.entity.Appointment;
+import lk.ijse.online_appointment_platform.entity.Availability;
+import lk.ijse.online_appointment_platform.entity.AvailabilityStatus;
 import lk.ijse.online_appointment_platform.repo.AppointmentRepository;
+import lk.ijse.online_appointment_platform.repo.AvailabilityRepository;
 import lk.ijse.online_appointment_platform.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +25,9 @@ public class AppointmentController {
 
         @Autowired
         private AppointmentRepository appointmentRepository;
+
+        @Autowired
+        private AvailabilityRepository availabilityRepository;
 
         @PostMapping("/book")
         public ResponseEntity<String> bookAppointment(@RequestBody AppointmentDTO appointmentDTO) {
@@ -52,6 +58,25 @@ public class AppointmentController {
             boolean isAvailable = appointmentService.checkAvailability(gigId, requestedTime);
             return new ResponseEntity<>(isAvailable, HttpStatus.OK);
         }
+
+    // Endpoint to accept the booking
+    @PutMapping("/accept/{availabilityId}")
+    public ResponseEntity<String> acceptBooking(@PathVariable Long availabilityId) {
+        try {
+            appointmentService.acceptBooking(availabilityId);
+            return ResponseEntity.ok("Booking accepted successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
+
+    @GetMapping("/pending")
+    public ResponseEntity<List<Availability>> getPendingBookings() {
+        List<Availability> pendingBookings = availabilityRepository.findByStatus(AvailabilityStatus.PENDING);
+        return ResponseEntity.ok(pendingBookings);
+    }
+
+
+}
 
 

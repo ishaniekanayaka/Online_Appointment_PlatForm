@@ -94,8 +94,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Transactional
-    public void completeAppointment(Long availabilityId) {
-        // Retrieve the Availability object
+    public void completeBooking(Long availabilityId) {
+        // Retrieve the Availability object by ID
         Availability availability = availabilityRepository.findById(availabilityId)
                 .orElseThrow(() -> new RuntimeException("Availability not found"));
 
@@ -109,11 +109,31 @@ public class AppointmentServiceImpl implements AppointmentService {
         availabilityRepository.save(availability);
 
         // Optionally, log the status change
-        System.out.println("Appointment completed, status changed to: " + AvailabilityStatus.COMPLETED);
+        System.out.println("Booking completed, status changed to: " + AvailabilityStatus.COMPLETED);
     }
 
 
     @Transactional
+    public void acceptBooking(Long availabilityId) {
+        // Retrieve the Availability object by ID
+        Availability availability = availabilityRepository.findById(availabilityId)
+                .orElseThrow(() -> new RuntimeException("Availability not found"));
+
+        // Check if the status is PENDING (booking can't be accepted unless it's pending)
+        if (availability.getStatus() != AvailabilityStatus.PENDING) {
+            throw new RuntimeException("This booking can't be accepted because it's not pending.");
+        }
+
+        // Update the status to BOOKING (gig accepted)
+        availability.setStatus(AvailabilityStatus.BOOKING);
+        availabilityRepository.save(availability);
+
+        // Optionally, log the status change
+        System.out.println("Booking accepted, status changed to: " + AvailabilityStatus.BOOKING);
+    }
+
+
+    /*@Transactional
     public void acceptAppointment(Long availabilityId) {
         // Retrieve the Availability object
         Availability availability = availabilityRepository.findById(availabilityId)
@@ -130,7 +150,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         // Optionally, log the status change
         System.out.println("Appointment accepted, status changed to: " + AvailabilityStatus.BOOKING);
-    }
+    }*/
 
 
 
