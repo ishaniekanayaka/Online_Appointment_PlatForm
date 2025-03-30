@@ -14,6 +14,10 @@ public class Availability {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Use EnumType.STRING to store the enum as a string in the database
+    @Enumerated(EnumType.STRING)
+    private AvailabilityStatus status;
+
     @ManyToOne
     @JoinColumn(name = "appointment_id")
     private Appointment appointment;

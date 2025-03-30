@@ -2,10 +2,7 @@ package lk.ijse.online_appointment_platform.service.impl;
 
 import jakarta.transaction.Transactional;
 import lk.ijse.online_appointment_platform.dto.AppointmentDTO;
-import lk.ijse.online_appointment_platform.entity.Appointment;
-import lk.ijse.online_appointment_platform.entity.Availability;
-import lk.ijse.online_appointment_platform.entity.Gig_details;
-import lk.ijse.online_appointment_platform.entity.User;
+import lk.ijse.online_appointment_platform.entity.*;
 import lk.ijse.online_appointment_platform.repo.AppointmentRepository;
 import lk.ijse.online_appointment_platform.repo.AvailabilityRepository;
 import lk.ijse.online_appointment_platform.repo.GigDetailsRepository;
@@ -68,19 +65,16 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         Appointment savedAppointment = appointmentRepository.save(appointment);
 
-        // Create the Availability entry
+        // Create the Availability entry and set status as PENDING
         Availability availability = new Availability();
         availability.setAppointment(savedAppointment);
         availability.setGig(gigDetails);
+        availability.setStatus(AvailabilityStatus.PENDING);  // Set status to PENDING initially
+
         availabilityRepository.save(availability);
 
         // Decrement the maxAppointmentsPerDay by 1 after booking the appointment
         gigDetails.setMaxAppointmentsPerDay(gigDetails.getMaxAppointmentsPerDay() - 1);
-
-        // Explicitly fetching the entity from the repository to ensure it's not detached
-        gigDetails = gigDetailsRepository.findById(gigDetails.getId()).orElseThrow(() -> new RuntimeException("Gig not found"));
-
-        // Save the updated gig details with the decremented appointment count
         gigDetailsRepository.save(gigDetails);
 
         // Log for debugging purposes to confirm the update
@@ -98,6 +92,46 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         return currentAppointments >= gigDetails.getMaxAppointmentsPerDay();
     }
+
+    @Transactional
+    public void completeAppointment(Long availabilityId) {
+        // Retrieve the Availability object
+        Availability availability = availabilityRepository.findById(availabilityId)
+                .orElseThrow(() -> new RuntimeException("Availability not found"));
+
+        // Check if the current status is BOOKING (only completed appointments should have this status)
+        if (availability.getStatus() != AvailabilityStatus.BOOKING) {
+            throw new RuntimeException("This appointment cannot be completed because it's not booked yet.");
+        }
+
+        // Update the status to COMPLETED
+        availability.setStatus(AvailabilityStatus.COMPLETED);
+        availabilityRepository.save(availability);
+
+        // Optionally, log the status change
+        System.out.println("Appointment completed, status changed to: " + AvailabilityStatus.COMPLETED);
+    }
+
+
+    @Transactional
+    public void acceptAppointment(Long availabilityId) {
+        // Retrieve the Availability object
+        Availability availability = availabilityRepository.findById(availabilityId)
+                .orElseThrow(() -> new RuntimeException("Availability not found"));
+
+        // Check if the current status is PENDING
+        if (availability.getStatus() != AvailabilityStatus.PENDING) {
+            throw new RuntimeException("This appointment cannot be accepted because it's not pending.");
+        }
+
+        // Update the status to BOOKING when the gig holder accepts the appointment
+        availability.setStatus(AvailabilityStatus.BOOKING);
+        availabilityRepository.save(availability);
+
+        // Optionally, log the status change
+        System.out.println("Appointment accepted, status changed to: " + AvailabilityStatus.BOOKING);
+    }
+
 
 
     public boolean checkAvailability(Long gigId, LocalDateTime requestedTime) {
