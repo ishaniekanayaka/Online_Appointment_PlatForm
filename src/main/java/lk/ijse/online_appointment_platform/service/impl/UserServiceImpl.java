@@ -1,7 +1,9 @@
 package lk.ijse.online_appointment_platform.service.impl;
 
 import lk.ijse.online_appointment_platform.dto.UserDTO;
+import lk.ijse.online_appointment_platform.entity.Gig_details;
 import lk.ijse.online_appointment_platform.entity.User;
+import lk.ijse.online_appointment_platform.repo.GigDetailsRepository;
 import lk.ijse.online_appointment_platform.repo.UserRepository;
 import lk.ijse.online_appointment_platform.service.UserService;
 import lk.ijse.online_appointment_platform.util.VarList;
@@ -30,6 +32,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private GigDetailsRepository gigDetailsRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -136,7 +141,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return userOptional.map(user -> modelMapper.map(user, UserDTO.class)).orElse(null);
     }
 
-
+    @Override
+    public List<Gig_details> getGigsByUserId(Long userId) {
+        return gigDetailsRepository.findByUserId(userId) ;
+    }
 
 
 }

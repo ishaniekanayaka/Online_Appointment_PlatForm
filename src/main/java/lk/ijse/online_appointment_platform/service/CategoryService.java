@@ -13,6 +13,6 @@ public interface CategoryService {
     CategoryDTO getCategoryById(Long id);
     List<String>getCategoryNames();
     CategoryDTO getCategoryByName(String name);
-    public List<SubCategory> getSubCategoriesByCategoryId(Long categoryId);
+    List<SubCategory> getSubCategoriesByCategoryId(Long categoryId);
   //  public List<SubCategory> getSubCategoriesByCategoryName(String categoryName);
 }
