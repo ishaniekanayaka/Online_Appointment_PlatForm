@@ -1,19 +1,15 @@
 package lk.ijse.online_appointment_platform.service.impl;
 
+import lk.ijse.online_appointment_platform.dto.AvailabilityDTO;
 import lk.ijse.online_appointment_platform.dto.GigDetailsDTO;
-import lk.ijse.online_appointment_platform.entity.Category;
-import lk.ijse.online_appointment_platform.entity.Gig_details;
-import lk.ijse.online_appointment_platform.entity.SubCategory;
-import lk.ijse.online_appointment_platform.entity.User;
-import lk.ijse.online_appointment_platform.repo.CategoryRepository;
-import lk.ijse.online_appointment_platform.repo.GigDetailsRepository;
-import lk.ijse.online_appointment_platform.repo.SubCategoryRepository;
-import lk.ijse.online_appointment_platform.repo.UserRepository;
+import lk.ijse.online_appointment_platform.entity.*;
+import lk.ijse.online_appointment_platform.repo.*;
 import lk.ijse.online_appointment_platform.service.GigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,6 +25,11 @@ public class GigServiceImpl implements GigService {
 
     @Autowired
     private SubCategoryRepository subCategoryRepository;
+    @Autowired
+    private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private AvailabilityRepository availabilityRepository;
 
     @Override
     public void addGigDetails(GigDetailsDTO gigDetailsDTO) {
@@ -81,7 +82,14 @@ public class GigServiceImpl implements GigService {
         }
     }
 
-
-
+   /* @Override
+    public List<Availability> getAppointmentsByGigId(Long gigId) {
+        return availabilityRepository.findByGigId(gigId);
+    }
+*/
+   @Override
+   public List<AvailabilityDTO> getAppointmentsByGigId(Long gigId) {
+       return availabilityRepository.findByGigId(gigId);
+   }
 
 }

@@ -1,5 +1,6 @@
 package lk.ijse.online_appointment_platform.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,8 +26,9 @@ public class Category {
    /* @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;*/
-    @JsonIgnore
+
     @OneToMany(mappedBy = "category")
+    @JsonBackReference
     private List<SubCategory> subCategories;
 
 

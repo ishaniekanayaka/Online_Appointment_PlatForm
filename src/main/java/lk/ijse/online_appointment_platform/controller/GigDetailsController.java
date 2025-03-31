@@ -1,15 +1,15 @@
 package lk.ijse.online_appointment_platform.controller;
 
 
+import lk.ijse.online_appointment_platform.dto.AvailabilityDTO;
 import lk.ijse.online_appointment_platform.dto.GigDetailsDTO;
+import lk.ijse.online_appointment_platform.entity.Appointment;
+import lk.ijse.online_appointment_platform.entity.Availability;
 import lk.ijse.online_appointment_platform.service.GigService;
 import lk.ijse.online_appointment_platform.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -17,8 +17,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 @RestController
 @RequestMapping("api/v1/gig")
@@ -88,6 +88,9 @@ public class GigDetailsController {
         return new ResponseUtil(200, "Gig details saved successfully", gigDetailsDTO);
     }
 
-
+    @GetMapping("{gigId}/availabilities")
+    public List<AvailabilityDTO> getAppointmentsByGigs(@PathVariable Long gigId) {
+        return gigService.getAppointmentsByGigId(gigId);
+    }
 
 }

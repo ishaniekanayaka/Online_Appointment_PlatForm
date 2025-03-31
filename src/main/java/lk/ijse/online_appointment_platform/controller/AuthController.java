@@ -62,6 +62,8 @@ public class AuthController {
             AuthDTO authDTO = new AuthDTO();
             authDTO.setEmail(loadedUser.getEmail());
             authDTO.setToken(token);
+            authDTO.setRole(loadedUser.getRole());
+            authDTO.setUserId(Math.toIntExact(loadedUser.getId()));
 
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(new ResponseDTO(VarList.Created, "Success", authDTO));
@@ -72,36 +74,8 @@ public class AuthController {
         }
     }
 
-/*
-    public ResponseEntity<ResponseDTO> authenticate(@RequestBody UserDTO userDTO) {
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword()));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new ResponseDTO(VarList.Unauthorized, "Invalid Credentials", e.getMessage()));
-        }
 
-        UserDTO loadedUser = userService.loadUserDetailsByUsername(userDTO.getEmail());
-        if (loadedUser == null) {
-            return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body(new ResponseDTO(VarList.Conflict, "Authorization Failure! Please Try Again", null));
-        }
 
-        String token = jwtUtil.generateToken(loadedUser);
-        if (token == null || token.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body(new ResponseDTO(VarList.Conflict, "Authorization Failure! Please Try Again", null));
-        }
-
-        AuthDTO authDTO = new AuthDTO();
-        authDTO.setEmail(loadedUser.getEmail());
-        authDTO.setToken(token);
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(new ResponseDTO(VarList.Created, "Success", authDTO));
-    }
-*/
 
 }
 

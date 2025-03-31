@@ -1,5 +1,6 @@
 package lk.ijse.online_appointment_platform.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ public class User implements Serializable {
     private boolean active = false;
 
     @OneToMany(mappedBy = "user")
+    @JsonBackReference
     private List<Appointment> appointments;
 
     @OneToMany(mappedBy = "user")
