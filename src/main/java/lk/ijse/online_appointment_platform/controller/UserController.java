@@ -2,9 +2,7 @@ package lk.ijse.online_appointment_platform.controller;
 
 import jakarta.validation.Valid;
 
-import lk.ijse.online_appointment_platform.dto.AuthDTO;
-import lk.ijse.online_appointment_platform.dto.ResponseDTO;
-import lk.ijse.online_appointment_platform.dto.UserDTO;
+import lk.ijse.online_appointment_platform.dto.*;
 import lk.ijse.online_appointment_platform.entity.Gig_details;
 import lk.ijse.online_appointment_platform.service.UserService;
 import lk.ijse.online_appointment_platform.util.JwtUtil;
@@ -125,6 +123,9 @@ public class UserController {
     public List<Gig_details> getGigsByUser(@PathVariable Long userId){
         return userService.getGigsByUserId(userId);
     }
-    
+
+
+
+
 
 }

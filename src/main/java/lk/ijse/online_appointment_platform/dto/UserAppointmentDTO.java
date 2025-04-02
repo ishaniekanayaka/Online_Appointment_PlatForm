@@ -10,10 +10,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class AvailabilityDTO {
+public class UserAppointmentDTO {
     private Long id;
+    private String gigName;
     private LocalDateTime dateTime;
-
-    private String userFullName;
     private AvailabilityStatus status;
 }

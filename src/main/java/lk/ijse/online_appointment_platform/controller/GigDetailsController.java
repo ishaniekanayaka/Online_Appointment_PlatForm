@@ -3,12 +3,14 @@ package lk.ijse.online_appointment_platform.controller;
 
 import lk.ijse.online_appointment_platform.dto.AvailabilityDTO;
 import lk.ijse.online_appointment_platform.dto.GigDetailsDTO;
+import lk.ijse.online_appointment_platform.dto.UserAppointmentDTO;
 import lk.ijse.online_appointment_platform.entity.Appointment;
 import lk.ijse.online_appointment_platform.entity.Availability;
 import lk.ijse.online_appointment_platform.service.GigService;
 import lk.ijse.online_appointment_platform.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -92,5 +94,13 @@ public class GigDetailsController {
     public List<AvailabilityDTO> getAppointmentsByGigs(@PathVariable Long gigId) {
         return gigService.getAppointmentsByGigId(gigId);
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<UserAppointmentDTO>> getAppointmentsByUser(@PathVariable Long userId) {
+        List<UserAppointmentDTO> appointments = gigService.getAppointmentsByUserId(userId);
+        return ResponseEntity.ok(appointments);
+    }
+
+
 
 }

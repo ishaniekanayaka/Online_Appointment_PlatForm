@@ -41,4 +41,6 @@ public class Appointment {
     @OneToMany(mappedBy = "appointment")
     private List<Availability> availabilities;
 
+
+
 }

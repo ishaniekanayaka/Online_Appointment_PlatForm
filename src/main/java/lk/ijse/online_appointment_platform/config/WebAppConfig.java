@@ -23,4 +23,5 @@ public class WebAppConfig implements WebMvcConfigurer {
                 .addResourceLocations(uploadPath);
     }
 
+
 }

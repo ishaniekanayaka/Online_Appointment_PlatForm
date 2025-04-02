@@ -1,8 +1,10 @@
 package lk.ijse.online_appointment_platform.service.impl;
 
+import lk.ijse.online_appointment_platform.dto.UserAppointmentDTO;
 import lk.ijse.online_appointment_platform.dto.UserDTO;
 import lk.ijse.online_appointment_platform.entity.Gig_details;
 import lk.ijse.online_appointment_platform.entity.User;
+import lk.ijse.online_appointment_platform.repo.AvailabilityRepository;
 import lk.ijse.online_appointment_platform.repo.GigDetailsRepository;
 import lk.ijse.online_appointment_platform.repo.UserRepository;
 import lk.ijse.online_appointment_platform.service.UserService;
@@ -35,6 +37,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     private GigDetailsRepository gigDetailsRepository;
+    @Autowired
+    private AvailabilityRepository availabilityRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -145,6 +149,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public List<Gig_details> getGigsByUserId(Long userId) {
         return gigDetailsRepository.findByUserId(userId) ;
     }
+
 
 
 }
