@@ -16,4 +16,5 @@ public class AvailabilityDTO {
 
     private String userFullName;
     private AvailabilityStatus status;
+
 }
