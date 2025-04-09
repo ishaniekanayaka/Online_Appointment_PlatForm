@@ -11,6 +11,8 @@ import lk.ijse.online_appointment_platform.service.UserService;
 import lk.ijse.online_appointment_platform.util.VarList;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -39,6 +41,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private GigDetailsRepository gigDetailsRepository;
     @Autowired
     private AvailabilityRepository availabilityRepository;
+
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -91,17 +97,33 @@ public class UserServiceImpl implements UserDetailsService, UserService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public boolean changeUserStatus(int id, boolean status) {
-        Optional<User> userOptional = userRepository.findById(String.valueOf(id));
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            user.setActive(status);
-            userRepository.save(user);
-            return true;
-        }
-        return false;
+
+   @Override
+   public boolean changeUserStatus(int id, boolean status) {
+       Optional<User> userOptional = userRepository.findById(String.valueOf(id));  // Ensure you're using the correct ID type
+       if (userOptional.isPresent()) {
+           User user = userOptional.get();
+           user.setActive(status); // Update the active status of the user
+           userRepository.save(user);  // Save the updated user back to the DB
+
+           // If user is activated, send the activation email
+           if (status) {
+               sendActivationEmail(user.getEmail(), user.getName()); // Send the email to the correct user
+           }
+
+           return true;
+       }
+       return false;  // Return false if user is not found
+   }
+
+    private void sendActivationEmail(String email, String name) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);  // Send the email to the activated user's email
+        message.setSubject("Your Account Has Been Activated");
+        message.setText("Hello " + name + ",\n\nYour account on Online Appointment Platform has been successfully activated.\n\nYou can now log in and enjoy our services.\n\nThank you!");
+        mailSender.send(message);  // Send the email
     }
+
 
     @Override
     public boolean updateUser(UserDTO userDTO) {
@@ -149,7 +171,4 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public List<Gig_details> getGigsByUserId(Long userId) {
         return gigDetailsRepository.findByUserId(userId) ;
     }
-
-
-
 }
