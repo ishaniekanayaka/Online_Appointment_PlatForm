@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Data
+@Entity
 public class VerificationOTP {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
