@@ -1,6 +1,7 @@
 package lk.ijse.online_appointment_platform.repo;
 
 import lk.ijse.online_appointment_platform.dto.AvailabilityDTO;
+import lk.ijse.online_appointment_platform.dto.GigAppointmentDTO;
 import lk.ijse.online_appointment_platform.dto.UserAppointmentDTO;
 import lk.ijse.online_appointment_platform.entity.Availability;
 import lk.ijse.online_appointment_platform.enumClass.AvailabilityStatus;
@@ -23,6 +24,12 @@ public interface AvailabilityRepository extends JpaRepository<Availability, Long
             "FROM Availability a " +
             "WHERE a.appointment.user.id = :userId")
     List<UserAppointmentDTO> findAppointmentsByUserId(@Param("userId") Long userId);
+
+
+    @Query("SELECT new lk.ijse.online_appointment_platform.dto.GigAppointmentDTO(" +
+            "a.id, a.appointment.dateTime, a.appointment.user.name, a.status, a.gig.FullName) " +
+            "FROM Availability a")
+    List<GigAppointmentDTO> findAllAvailabilityDetails();
 
    /* List<Availability> findByGigId(Long gigId);*/
 

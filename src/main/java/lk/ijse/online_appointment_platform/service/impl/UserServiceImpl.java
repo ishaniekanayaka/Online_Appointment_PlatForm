@@ -120,7 +120,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);  // Send the email to the activated user's email
         message.setSubject("Your Account Has Been Activated");
-        message.setText("Hello " + name + ",\n\nYour account on Online Appointment Platform has been successfully activated.\n\nYou can now log in and enjoy our services.\n\nThank you!");
+        message.setText("Hello " + name + ",\n\nYour account on MeetUpPRO has been successfully activated.\n\nYou can now log in and enjoy our services.\n\nThank you!");
         mailSender.send(message);  // Send the email
     }
 
