@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class UserAppointmentDTO {
     private Long id;
     private String gigName;
+
     private LocalDateTime dateTime;
     private AvailabilityStatus status;
 }
