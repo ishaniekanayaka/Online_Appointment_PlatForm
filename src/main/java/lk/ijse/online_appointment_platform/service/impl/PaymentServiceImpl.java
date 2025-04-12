@@ -2,6 +2,7 @@ package lk.ijse.online_appointment_platform.service.impl;
 
 
 import jakarta.transaction.Transactional;
+import lk.ijse.online_appointment_platform.dto.PayHereResponseDTO;
 import lk.ijse.online_appointment_platform.dto.PaymentDTO;
 import lk.ijse.online_appointment_platform.entity.Availability;
 import lk.ijse.online_appointment_platform.entity.Gig_details;
@@ -15,6 +16,9 @@ import lk.ijse.online_appointment_platform.repo.UserRepository;
 import lk.ijse.online_appointment_platform.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.Map;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -61,4 +65,38 @@ public class PaymentServiceImpl implements PaymentService {
 
         return paymentRepository.save(payment);
     }
+
+
+    @Override
+    public void handlePayHereNotification(PayHereResponseDTO dto) {
+        if (!"2".equals(dto.getStatus_code())) {
+            throw new RuntimeException("Payment failed or incomplete");
+        }
+
+        User user = userRepository.findById(String.valueOf(Long.valueOf(dto.getCustom_1())))
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Availability availability = availabilityRepository.findById(Long.valueOf(dto.getCustom_2()))
+                .orElseThrow(() -> new RuntimeException("Availability not found"));
+
+        if (availability.getStatus() == AvailabilityStatus.COMPLETED) {
+            return; // Already processed
+        }
+
+        Gig_details gig = gigRepository.findById(Long.valueOf(dto.getCustom_3()))
+                .orElseThrow(() -> new RuntimeException("Gig not found"));
+
+        availability.setStatus(AvailabilityStatus.COMPLETED);
+        availabilityRepository.save(availability);
+
+        Payment payment = new Payment();
+        payment.setAmount(Double.valueOf(dto.getPayhere_amount()));
+        payment.setPaidAt(LocalDateTime.now());
+        payment.setUser(user);
+        payment.setAvailability(availability);
+        payment.setGig(gig);
+
+        paymentRepository.save(payment);
+    }
+
 }
