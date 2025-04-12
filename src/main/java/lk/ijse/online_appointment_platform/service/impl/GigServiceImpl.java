@@ -103,9 +103,15 @@ public class GigServiceImpl implements GigService {
 //        return gigDetailsRepository.getAllGigDetailsWithNames();
 //    }
 
-    @Override
+    /*@Override
     public Optional<GigDetailsResponseDTO> getGigDetailsByGigId(Long gigId) {
         return gigDetailsRepository.getGigDetailsByGigId(gigId);
+    }
+*/
+
+    @Override
+    public Optional<GigDetailsResponseDTO> getGigDetailsByEmail(String email) {
+        return gigDetailsRepository.getGigDetailsByEmail(email);
     }
 
 
