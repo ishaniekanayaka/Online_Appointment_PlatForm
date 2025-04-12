@@ -12,10 +12,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface GigService {
     void addGigDetails(GigDetailsDTO gigDetailsDTO);
     List<AvailabilityDTO> getAppointmentsByGigId(Long gigId);
     public List<UserAppointmentDTO> getAppointmentsByUserId(Long userId);
-    public List<GigDetailsResponseDTO> getAllGigs();
+   // public List<GigDetailsResponseDTO> getAllGigs();
+   public Optional<GigDetailsResponseDTO> getGigDetailsByGigId(Long gigId);
 }

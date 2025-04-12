@@ -102,12 +102,18 @@ public class GigDetailsController {
         return ResponseEntity.ok(appointments);
     }
 
-    @GetMapping("/gigs")
+   /* @GetMapping("/gigs")
     public ResponseEntity<List<GigDetailsResponseDTO>> getAllGigs() {
         List<GigDetailsResponseDTO> gigs = gigService.getAllGigs();
         return ResponseEntity.ok(gigs);
-    }
+    }*/
 
+    @GetMapping("/gigs/{id}")
+    public ResponseEntity<GigDetailsResponseDTO> getGigDetailsById(@PathVariable Long id) {
+        return gigService.getGigDetailsByGigId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 
 }
