@@ -108,12 +108,20 @@ public class GigDetailsController {
         return ResponseEntity.ok(gigs);
     }*/
 
-    @GetMapping("/gigs/{id}")
+ /*   @GetMapping("/gigs/{id}")
     public ResponseEntity<GigDetailsResponseDTO> getGigDetailsById(@PathVariable Long id) {
         return gigService.getGigDetailsByGigId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }*/
+
+    @GetMapping("/gigs/email/{email}")
+    public ResponseEntity<GigDetailsResponseDTO> getGigDetailsByEmail(@PathVariable String email) {
+        return gigService.getGigDetailsByEmail(email)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
+
 
 
 }

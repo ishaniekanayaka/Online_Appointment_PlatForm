@@ -21,11 +21,18 @@ public interface GigDetailsRepository extends JpaRepository<Gig_details, Long> {
 //            "FROM Gig_details g")
 //    List<GigDetailsResponseDTO> getAllGigDetailsWithNames();
 
-    @Query("SELECT new lk.ijse.online_appointment_platform.dto.GigDetailsResponseDTO(" +
+  /*  @Query("SELECT new lk.ijse.online_appointment_platform.dto.GigDetailsResponseDTO(" +
             "g.id, g.FullName, g.image, g.degree, g.experience, g.amountCharge, " +
             "g.location, g.contactNumber, g.maxAppointmentsPerDay, g.active, g.dateTime, " +
             "g.user.id, g.category.name, g.subCategory.name) " +
             "FROM Gig_details g WHERE g.id = :gigId")
     Optional<GigDetailsResponseDTO> getGigDetailsByGigId(@Param("gigId") Long gigId);
+*/
+  @Query("SELECT new lk.ijse.online_appointment_platform.dto.GigDetailsResponseDTO(" +
+          "g.id, g.FullName, g.image, g.degree, g.experience, g.amountCharge, " +
+          "g.location, g.contactNumber, g.maxAppointmentsPerDay, g.active, g.dateTime, " +
+          "g.user.id, g.category.name, g.subCategory.name) " +
+          "FROM Gig_details g WHERE g.user.email = :email")
+  Optional<GigDetailsResponseDTO> getGigDetailsByEmail(@Param("email") String email);
 
 }

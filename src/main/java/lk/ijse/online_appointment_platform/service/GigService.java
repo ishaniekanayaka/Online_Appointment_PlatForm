@@ -19,5 +19,6 @@ public interface GigService {
     List<AvailabilityDTO> getAppointmentsByGigId(Long gigId);
     public List<UserAppointmentDTO> getAppointmentsByUserId(Long userId);
    // public List<GigDetailsResponseDTO> getAllGigs();
-   public Optional<GigDetailsResponseDTO> getGigDetailsByGigId(Long gigId);
+  // public Optional<GigDetailsResponseDTO> getGigDetailsByGigId(Long gigId);
+   public Optional<GigDetailsResponseDTO> getGigDetailsByEmail(String email);
 }
