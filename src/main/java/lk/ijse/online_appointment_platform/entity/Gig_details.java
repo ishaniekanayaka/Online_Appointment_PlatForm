@@ -60,10 +60,6 @@ public class Gig_details {
     @JoinColumn(name = "subcategory_id")  // New Subcategory field
     private SubCategory subCategory;
 
-    /*@ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;*/
-
     @OneToMany(mappedBy = "gig")
     private List<Review> reviews;
 
