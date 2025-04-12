@@ -2,6 +2,7 @@ package lk.ijse.online_appointment_platform.service.impl;
 
 import lk.ijse.online_appointment_platform.dto.AvailabilityDTO;
 import lk.ijse.online_appointment_platform.dto.GigDetailsDTO;
+import lk.ijse.online_appointment_platform.dto.GigDetailsResponseDTO;
 import lk.ijse.online_appointment_platform.dto.UserAppointmentDTO;
 import lk.ijse.online_appointment_platform.entity.*;
 import lk.ijse.online_appointment_platform.repo.*;
@@ -95,6 +96,11 @@ public class GigServiceImpl implements GigService {
 
     public List<UserAppointmentDTO> getAppointmentsByUserId(Long userId) {
         return availabilityRepository.findAppointmentsByUserId(userId);
+    }
+
+    @Override
+    public List<GigDetailsResponseDTO> getAllGigs() {
+        return gigDetailsRepository.getAllGigDetailsWithNames();
     }
 
 }

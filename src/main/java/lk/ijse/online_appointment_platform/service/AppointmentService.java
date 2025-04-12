@@ -1,8 +1,10 @@
 package lk.ijse.online_appointment_platform.service;
 
 import lk.ijse.online_appointment_platform.dto.AppointmentDTO;
+import lk.ijse.online_appointment_platform.dto.GigDetailsResponseDTO;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface AppointmentService {
     public boolean checkAvailability(Long gigId, LocalDateTime requestedTime);

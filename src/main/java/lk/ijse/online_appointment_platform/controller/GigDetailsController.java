@@ -3,6 +3,7 @@ package lk.ijse.online_appointment_platform.controller;
 
 import lk.ijse.online_appointment_platform.dto.AvailabilityDTO;
 import lk.ijse.online_appointment_platform.dto.GigDetailsDTO;
+import lk.ijse.online_appointment_platform.dto.GigDetailsResponseDTO;
 import lk.ijse.online_appointment_platform.dto.UserAppointmentDTO;
 import lk.ijse.online_appointment_platform.entity.Appointment;
 import lk.ijse.online_appointment_platform.entity.Availability;
@@ -99,6 +100,12 @@ public class GigDetailsController {
     public ResponseEntity<List<UserAppointmentDTO>> getAppointmentsByUser(@PathVariable Long userId) {
         List<UserAppointmentDTO> appointments = gigService.getAppointmentsByUserId(userId);
         return ResponseEntity.ok(appointments);
+    }
+
+    @GetMapping("/gigs")
+    public ResponseEntity<List<GigDetailsResponseDTO>> getAllGigs() {
+        List<GigDetailsResponseDTO> gigs = gigService.getAllGigs();
+        return ResponseEntity.ok(gigs);
     }
 
 

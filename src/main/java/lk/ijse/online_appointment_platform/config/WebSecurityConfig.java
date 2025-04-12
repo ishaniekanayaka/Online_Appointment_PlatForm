@@ -64,6 +64,8 @@ public class WebSecurityConfig {
                                 "/api/v1/auth/refreshToken",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
+                                "api/v1/auth/send-otp",
+                                "api/v1/auth/verify-otp",
                                 "/uploads/**",
 
                                 "/swagger-ui.html").permitAll()

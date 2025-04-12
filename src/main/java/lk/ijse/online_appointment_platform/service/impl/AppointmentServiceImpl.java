@@ -4,6 +4,7 @@ package lk.ijse.online_appointment_platform.service.impl;
 
 import jakarta.transaction.Transactional;
 import lk.ijse.online_appointment_platform.dto.AppointmentDTO;
+import lk.ijse.online_appointment_platform.dto.GigDetailsResponseDTO;
 import lk.ijse.online_appointment_platform.entity.*;
 import lk.ijse.online_appointment_platform.enumClass.AvailabilityStatus;
 import lk.ijse.online_appointment_platform.repo.AppointmentRepository;
@@ -154,6 +155,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         // Optionally, log the status change
         System.out.println("Booking cancelled, status changed to: " + AvailabilityStatus.CANCELLED);
     }
+
 
 
     /*@Transactional
