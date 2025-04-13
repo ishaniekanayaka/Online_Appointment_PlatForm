@@ -35,6 +35,10 @@ public class Gig_details {
     @Column(nullable = false)
     private LocalDateTime dateTime;
 
+    @Column(nullable = false)
+    private Integer star = 0; // Default value
+
+
     @PrePersist
     protected void setDefaultDateTime() {
         if (this.dateTime == null) {
