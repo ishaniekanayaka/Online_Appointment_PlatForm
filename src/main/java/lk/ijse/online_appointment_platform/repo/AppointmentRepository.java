@@ -22,4 +22,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     List<Appointment> findByGigIdAndDateTimeBetween(Long gigId, LocalDateTime startTime, LocalDateTime endTime);
 
     int countByGigIdAndDateTimeBetween(Long gigId, LocalDateTime startTime, LocalDateTime endTime);
+
+    boolean existsByUserIdAndGigId(Long userId, Long gigId);
+
 }
