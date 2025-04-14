@@ -20,7 +20,7 @@ public interface AvailabilityRepository extends JpaRepository<Availability, Long
     List<AvailabilityDTO> findByGigId(@Param("gigId") Long gigId);
 
     @Query("SELECT new lk.ijse.online_appointment_platform.dto.UserAppointmentDTO(" +
-            "a.id, a.gig.FullName, a.appointment.dateTime, a.status) " +
+            "a.id, a.gig.FullName, a.gig.amountCharge, a.appointment.dateTime, a.status) " +
             "FROM Availability a " +
             "WHERE a.appointment.user.id = :userId")
     List<UserAppointmentDTO> findAppointmentsByUserId(@Param("userId") Long userId);
