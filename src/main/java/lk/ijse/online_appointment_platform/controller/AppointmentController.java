@@ -3,9 +3,11 @@ package lk.ijse.online_appointment_platform.controller;
 import lk.ijse.online_appointment_platform.dto.AppointmentDTO;
 import lk.ijse.online_appointment_platform.entity.Appointment;
 import lk.ijse.online_appointment_platform.entity.Availability;
+import lk.ijse.online_appointment_platform.entity.User;
 import lk.ijse.online_appointment_platform.enumClass.AvailabilityStatus;
 import lk.ijse.online_appointment_platform.repo.AppointmentRepository;
 import lk.ijse.online_appointment_platform.repo.AvailabilityRepository;
+import lk.ijse.online_appointment_platform.repo.UserRepository;
 import lk.ijse.online_appointment_platform.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/appointments")
@@ -28,6 +32,9 @@ public class AppointmentController {
 
         @Autowired
         private AvailabilityRepository availabilityRepository;
+
+        @Autowired
+        private UserRepository userRepository;
 
         @PostMapping("/book")
         public ResponseEntity<String> bookAppointment(@RequestBody AppointmentDTO appointmentDTO) {
@@ -87,6 +94,29 @@ public class AppointmentController {
         }
     }
 
+
+    @GetMapping("/appointments/check")
+    public ResponseEntity<?> checkAppointment(
+            @RequestParam String email,
+            @RequestParam Long gigId) {
+
+        // Find user by email
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if (optionalUser.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+
+        User user = optionalUser.get();
+
+        // Check if appointment exists with this gig
+        boolean hasAppointment = appointmentRepository.existsByUserIdAndGigId((long) user.getId(), gigId);
+        if (!hasAppointment) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("You must have an appointment to give a review");
+        }
+
+        // Return user ID to frontend
+        return ResponseEntity.ok(Map.of("data", Map.of("userId", user.getId())));
+    }
 
 
 }

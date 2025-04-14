@@ -16,14 +16,6 @@ public class Review {
     private Long id;
 
 
-   /* @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "gig_id")
-    private Gig_details gig;*/
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore  // 🔥 Add this line
