@@ -1,6 +1,7 @@
 package lk.ijse.online_appointment_platform.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -65,6 +66,7 @@ public class Gig_details {
     private SubCategory subCategory;
 
     @OneToMany(mappedBy = "gig")
+    @JsonManagedReference
     private List<Review> reviews;
 
 }
