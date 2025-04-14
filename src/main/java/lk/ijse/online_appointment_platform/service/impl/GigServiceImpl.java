@@ -94,6 +94,7 @@ public class GigServiceImpl implements GigService {
        return availabilityRepository.findByGigId(gigId);
    }
 
+   @Override
     public List<UserAppointmentDTO> getAppointmentsByUserId(Long userId) {
         return availabilityRepository.findAppointmentsByUserId(userId);
     }
