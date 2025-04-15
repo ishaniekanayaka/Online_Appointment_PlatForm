@@ -1,14 +1,12 @@
 package lk.ijse.online_appointment_platform.controller;
 
 import lk.ijse.online_appointment_platform.dto.ProfileDto;
+import lk.ijse.online_appointment_platform.repo.ProfileRepository;
 import lk.ijse.online_appointment_platform.service.ProfileService;
 import lk.ijse.online_appointment_platform.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -27,10 +25,13 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
+    @Autowired
+    private ProfileRepository profileRepository;
+
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseUtil uploadProfileImage(
             @RequestParam("userId") int userId,
-            @RequestParam("imageFile") MultipartFile imageFile
+            @RequestParam("profilePicture") MultipartFile imageFile
     ) throws IOException {
 
         // Ensure upload directory exists
@@ -50,5 +51,11 @@ public class ProfileController {
 
         return new ResponseUtil(200, "Profile image saved successfully!", savedImagePath);
     }
+
+    @GetMapping("/exists/{userId}")
+    public boolean profileExists(@PathVariable int userId) {
+        return profileRepository.findByUserId(userId).isPresent();
+    }
+
 
 }
