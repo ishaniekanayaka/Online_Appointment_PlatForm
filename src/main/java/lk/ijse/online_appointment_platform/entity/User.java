@@ -26,6 +26,10 @@ public class User implements Serializable {
     private String role;
     private boolean active = false;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Profile profile;
+
+
     @OneToMany(mappedBy = "user")
     @JsonBackReference
     private List<Appointment> appointments;
