@@ -51,9 +51,13 @@ This project is built using **Spring Boot**, **HTML/CSS/JavaScript**, and **MySQ
 | 👤 User Dashboard | ![User Dashboard](https://github.com/user-attachments/assets/26ac6e55-5461-4554-bcbf-05a9f4d525bf) |
 | 👤 User Dashboard (Alt View) | ![User Dashboard](https://github.com/user-attachments/assets/b0b9828f-68fa-4f7f-8dc9-38f23e8cd2ea) |
 | 👤 User Dashboard (Booked) | ![User Dashboard](https://github.com/user-attachments/assets/05eea35d-91a2-490d-8c13-c495b707015e) |
+| 👤 User Dashboard (Booked) | ![Gig Manage](![image](https://github.com/user-attachments/assets/382a6382-1aab-42b6-b4fc-7a3d0942f3e8) |
+| 👤 Login PAGE (Booked) | ![lOGIN](![image](https://github.com/user-attachments/assets/cfa28d41-c188-4992-8b90-fb15fe213f0a) |
+| 👤 rEGISTER PAGE (Booked) | ![Register](![image](![image](https://github.com/user-attachments/assets/f7f6aae2-6dad-4358-9abd-746ef8fd1bf7) |
 | 🎯 Gig Holder Profile | ![Gig Profile](https://github.com/user-attachments/assets/bd40b582-8f88-4c4d-a2fc-cb29f4292a83) |
 | 🎯 Gig Holder Profile (Alt) | ![Gig Profile](https://github.com/user-attachments/assets/861fe00f-6f98-432f-afa2-0aa6f874faa8) |
 | ⚙️ Admin Dashboard | ![Admin Dashboard](https://github.com/user-attachments/assets/7620c1d7-fc0e-46f9-abc5-ebec81a95d5c) |
+| ⚙️ send OTP | ![login form](![image](https://github.com/user-attachments/assets/f167801b-6e59-4591-9d65-5abfffb7881f)|
 | 📅 Appointment Booking | ![Booking](https://github.com/user-attachments/assets/0f42e489-354c-4b61-8bab-0c521e407cfb) |
 | 💬 Notification Interface | ![Notification](https://github.com/user-attachments/assets/679752be-66de-4eba-9597-28e2e08bd3bf) |
 | 💸 Payment Interface | ![Payment](https://github.com/user-attachments/assets/1667aefe-6caa-45f5-b447-d50ca41e8365) |
