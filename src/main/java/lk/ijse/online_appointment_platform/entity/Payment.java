@@ -1,5 +1,6 @@
 package lk.ijse.online_appointment_platform.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,13 +24,16 @@ public class Payment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "gig_id", nullable = false)
+    @JsonBackReference
     private Gig_details gig;
 
     @OneToOne
     @JoinColumn(name = "availability_id", nullable = false)
+    @JsonBackReference
     private Availability availability;
 }
