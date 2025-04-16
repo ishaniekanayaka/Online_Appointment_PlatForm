@@ -94,7 +94,7 @@ live-server
 
 🎥 Demo Video
 📺 Watch the Demo
-🎬 Video Name Format:https://www.youtube.com/@IshaniEkanayaka-l5h
+🎬 Video Name Format:[https://www.youtube.com/@IshaniEkanayaka-l5h](https://youtu.be/gSRSuErWX0g)
 
 📦 Tech Stack
 
