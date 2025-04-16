@@ -92,8 +92,7 @@ Run a local development server:
 live-server
 # OR open index.html directly in your browser
 
-🎥 Demo Video
-📺 Watch the Demo
+🎥 Demo Video https://youtu.be/gSRSuErWX0g
 🎬 Video Name Format:[https://www.youtube.com/@IshaniEkanayaka-l5h](https://youtu.be/gSRSuErWX0g)
 
 📦 Tech Stack
