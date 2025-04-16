@@ -57,8 +57,6 @@ This project is built using **Spring Boot**, **HTML/CSS/JavaScript**, and **MySQ
 
 ) |
 | 👤 User Dashboard | ![User Dashboard](![image](https://github.com/user-attachments/assets/05eea35d-91a2-490d-8c13-c495b707015e)
-)
-
 ) |
 | 🎯 Gig Holder Profile | ![Gig Profile](![image](https://github.com/user-attachments/assets/bd40b582-8f88-4c4d-a2fc-cb29f4292a83)
 )
