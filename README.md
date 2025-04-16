@@ -65,10 +65,14 @@ This project is built using **Spring Boot**, **HTML/CSS/JavaScript**, and **MySQ
 | 🎯 Gig Holder Profile | ![Gig Profile](![image](https://github.com/user-attachments/assets/861fe00f-6f98-432f-afa2-0aa6f874faa8)
 )
 ) |
-| ⚙️ Admin Dashboard | ![Admin Dashboard](![image](https://github.com/user-attachments/assets/7620c1d7-fc0e-46f9-abc5-ebec81a95d5c) |
+| ⚙️ Admin Dashboard | ![Admin Dashboard](![image](https://github.com/user-attachments/assets/7620c1d7-fc0e-46f9-abc5-ebec81a95d5c) 
+)
+) |
 | 📅 Appointment Booking | ![Booking](![image](https://github.com/user-attachments/assets/0f42e489-354c-4b61-8bab-0c521e407cfb)
+)
 ) |
 | 💬 Notification Interface | ![Chat](screenshots/![image](https://github.com/user-attachments/assets/679752be-66de-4eba-9597-28e2e08bd3bf)
+)
 ) |
 | 💬 Payment Interface | ![Chat](![image](https://github.com/user-attachments/assets/1667aefe-6caa-45f5-b447-d50ca41e8365)
 )
