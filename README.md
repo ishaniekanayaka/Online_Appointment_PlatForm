@@ -47,40 +47,16 @@ This project is built using **Spring Boot**, **HTML/CSS/JavaScript**, and **MySQ
 
 | Page | Screenshot |
 |------|------------|
-| 🏠 Home Page | ![Home](![image](https://github.com/user-attachments/assets/dbb47a26-fc43-4044-ba3a-604f46371659)
-) |
-| 👤 User Dashboard | ![User Dashboard](![image](https://github.com/user-attachments/assets/26ac6e55-5461-4554-bcbf-05a9f4d525bf)
-)
-) |
-| 👤 User Dashboard | ![User Dashboard](![image](https://github.com/user-attachments/assets/b0b9828f-68fa-4f7f-8dc9-38f23e8cd2ea)
-)
-
-) |
-| 👤 User Dashboard | ![User Dashboard](![image](https://github.com/user-attachments/assets/05eea35d-91a2-490d-8c13-c495b707015e)
-) |
-| 🎯 Gig Holder Profile | ![Gig Profile](![image](https://github.com/user-attachments/assets/bd40b582-8f88-4c4d-a2fc-cb29f4292a83)
-)
-
-) |
-| 🎯 Gig Holder Profile | ![Gig Profile](![image](https://github.com/user-attachments/assets/861fe00f-6f98-432f-afa2-0aa6f874faa8)
-)
-
-) |
-| ⚙️ Admin Dashboard | ![Admin Dashboard](![image](https://github.com/user-attachments/assets/7620c1d7-fc0e-46f9-abc5-ebec81a95d5c)
-)
-
-) |
-| 📅 Appointment Booking | ![Booking](![image](https://github.com/user-attachments/assets/0f42e489-354c-4b61-8bab-0c521e407cfb)
-)
-) |
-| 💬 Notification Interface | ![Chat](screenshots/![image](https://github.com/user-attachments/assets/679752be-66de-4eba-9597-28e2e08bd3bf)
-)
-
-) |
-| 💬 Payment Interface | ![Chat](![image](https://github.com/user-attachments/assets/1667aefe-6caa-45f5-b447-d50ca41e8365)
-)
-
-) |
+| 🏠 Home Page | ![Home](https://github.com/user-attachments/assets/dbb47a26-fc43-4044-ba3a-604f46371659) |
+| 👤 User Dashboard | ![User Dashboard](https://github.com/user-attachments/assets/26ac6e55-5461-4554-bcbf-05a9f4d525bf) |
+| 👤 User Dashboard (Alt View) | ![User Dashboard](https://github.com/user-attachments/assets/b0b9828f-68fa-4f7f-8dc9-38f23e8cd2ea) |
+| 👤 User Dashboard (Booked) | ![User Dashboard](https://github.com/user-attachments/assets/05eea35d-91a2-490d-8c13-c495b707015e) |
+| 🎯 Gig Holder Profile | ![Gig Profile](https://github.com/user-attachments/assets/bd40b582-8f88-4c4d-a2fc-cb29f4292a83) |
+| 🎯 Gig Holder Profile (Alt) | ![Gig Profile](https://github.com/user-attachments/assets/861fe00f-6f98-432f-afa2-0aa6f874faa8) |
+| ⚙️ Admin Dashboard | ![Admin Dashboard](https://github.com/user-attachments/assets/7620c1d7-fc0e-46f9-abc5-ebec81a95d5c) |
+| 📅 Appointment Booking | ![Booking](https://github.com/user-attachments/assets/0f42e489-354c-4b61-8bab-0c521e407cfb) |
+| 💬 Notification Interface | ![Notification](https://github.com/user-attachments/assets/679752be-66de-4eba-9597-28e2e08bd3bf) |
+| 💸 Payment Interface | ![Payment](https://github.com/user-attachments/assets/1667aefe-6caa-45f5-b447-d50ca41e8365) |
 
 > 📁 *Place your screenshots in a `/screenshots` folder inside the repo.*
 
